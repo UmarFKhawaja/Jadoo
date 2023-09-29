@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e16f5fa9-95d2-4867-a45e-9e02e5bbc705" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/Jadoo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/isSpecial/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/isSpecial/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/joinLines/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/joinLines/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toCamelCase/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toCamelCase/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toConstantCase/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toConstantCase/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toDotCase/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toDotCase/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toHeaderCase/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toHeaderCase/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toParamCase/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toParamCase/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toPascalCase/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toPascalCase/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toPluralForm/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toPluralForm/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toSingularForm/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toSingularForm/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toSnakeCase/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toSnakeCase/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toTitleCase/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/methods/toTitleCase/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/models/Block/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/models/Block/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/models/Identifier/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/models/Identifier/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/models/Title/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/models/Title/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/src/models/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/core-library/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/constants/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/BooleanAttribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/DateAttribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/DateTimeAttribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/DecimalAttribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/DoubleAttribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/EntityAttribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/EnumAttribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/Int16Attribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/Int32Attribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/Int64Attribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/Int8Attribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/JSONAttribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/SingleAttribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/StringAttribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/TimeAttribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/TimestampAttribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/UUIDAttribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Attribute/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Entity/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Entity/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Enum/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Enum/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Model/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Reference/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Reference/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Schema/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Schema/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Value/IntegerValue/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Value/StringValue/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Value/UndefinedValue/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Value/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/Value/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/src/models/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/data-library/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lerna.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2VZ7E6sLRZMWmVnh9B7KZb2qSeE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "trusted.hosts",
+    "ts.external.directory.path": "/Users/umarfkhawaja/Work/umarfkhawaja/Jadoo/Libraries/data-library/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e16f5fa9-95d2-4867-a45e-9e02e5bbc705" name="Changes" comment="" />
+      <created>1695031633324</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1695031633324</updated>
+      <workItem from="1695031634368" duration="8759000" />
+      <workItem from="1695113793135" duration="684000" />
+      <workItem from="1696015938479" duration="1672000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

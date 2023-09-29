@@ -1,0 +1,4 @@
+/node_modules/
+/Libraries/**/coverage/
+/Libraries/**/lib/
+/Libraries/**/node_modules/
