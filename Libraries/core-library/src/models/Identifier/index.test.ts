@@ -126,20 +126,20 @@ describe(('Identifier'), () => {
       expect(identifier.isNullOrEmpty).toBe(false);
     });
 
-    it('has name in constantCase case', () => {
-      const identifier: Identifier = Identifier.create('Hello World');
-
-      const constantCase: string = identifier.constantCase;
-
-      expect(constantCase).toBe('HELLO_WORLD');
-    });
-
     it('has name in camelCase case', () => {
       const identifier: Identifier = Identifier.create('Hello World');
 
       const camelCase: string = identifier.camelCase;
 
       expect(camelCase).toBe('helloWorld');
+    });
+
+    it('has name in constantCase case', () => {
+      const identifier: Identifier = Identifier.create('Hello World');
+
+      const constantCase: string = identifier.constantCase;
+
+      expect(constantCase).toBe('HELLO_WORLD');
     });
 
     it('has name in dotCase case', () => {
