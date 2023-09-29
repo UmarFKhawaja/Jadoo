@@ -1,4 +1,4 @@
-import { Title } from '.';
+import { Title, TitleSpec } from '.';
 
 describe(('Title'), () => {
   describe('EMPTY', () => {
@@ -22,7 +22,7 @@ describe(('Title'), () => {
   });
 
   describe('toJSON', () => {
-    const json = Title
+    const json: TitleSpec = Title
       .create('World')
       .toJSON();
 

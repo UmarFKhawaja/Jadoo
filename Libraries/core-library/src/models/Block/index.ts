@@ -1,6 +1,10 @@
 import { isEmpty } from 'lodash';
 import { joinLines } from '../../methods';
 
+export interface BlockSpec {
+  lines: string[];
+}
+
 export class Block {
   public static readonly EMPTY: Block = Block.create();
 
@@ -30,6 +34,12 @@ export class Block {
 
   indent(): Block {
     return Block.create(...this.lines.map((line: string): string => isEmpty(line) ? line : `  ${ line }`));
+  }
+
+  toJSON(): BlockSpec {
+    return {
+      lines: this._lines
+    };
   }
 
   static create(...lines: string[]): Block {

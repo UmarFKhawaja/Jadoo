@@ -1,5 +1,10 @@
 import { toPluralForm, toSingularForm } from '../../methods';
-import { Identifier } from '../Identifier';
+import { Identifier, IdentifierSpec } from '../Identifier';
+
+export interface TitleSpec {
+  singular: IdentifierSpec;
+  plural: IdentifierSpec;
+}
 
 export class Title {
   public static readonly EMPTY: Title = Title.create('');
@@ -32,7 +37,7 @@ export class Title {
       .every((value: Identifier) => value.isNullOrEmpty);
   }
 
-  toJSON(): any {
+  toJSON(): TitleSpec {
     return {
       singular: this._singular.toJSON(),
       plural: this._plural.toJSON()

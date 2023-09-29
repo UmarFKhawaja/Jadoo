@@ -73,6 +73,52 @@ describe(('Identifier'), () => {
     });
   });
 
+  describe('toJSON', () => {
+    const json = Identifier
+      .create('account-type')
+      .toJSON();
+
+    it('has identifier in CONSTANT_CASE', () => {
+      expect(json).toHaveProperty('constantCase');
+      expect(json.constantCase).toEqual('ACCOUNT_TYPE')
+    });
+
+    it('has identifier in camelCase', () => {
+      expect(json).toHaveProperty('camelCase');
+      expect(json.camelCase).toEqual('accountType')
+    });
+
+    it('has identifier in dot.case', () => {
+      expect(json).toHaveProperty('dotCase');
+      expect(json.dotCase).toEqual('account.type')
+    });
+
+    it('has identifier in Header-Case', () => {
+      expect(json).toHaveProperty('headerCase');
+      expect(json.headerCase).toEqual('Account-Type')
+    });
+
+    it('has identifier in param-case', () => {
+      expect(json).toHaveProperty('paramCase');
+      expect(json.paramCase).toEqual('account-type')
+    });
+
+    it('has identifier in PascalCase', () => {
+      expect(json).toHaveProperty('pascalCase');
+      expect(json.pascalCase).toEqual('AccountType')
+    });
+
+    it('has identifier in snake_case', () => {
+      expect(json).toHaveProperty('snakeCase');
+      expect(json.snakeCase).toEqual('account_type')
+    });
+
+    it('has identifier in Title Case', () => {
+      expect(json).toHaveProperty('titleCase');
+      expect(json.titleCase).toEqual('Account Type')
+    });
+  });
+
   describe('create', () => {
     it('does not have an empty value', () => {
       const identifier: Identifier = Identifier.create('Hello World');

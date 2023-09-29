@@ -9,6 +9,17 @@ import {
   toTitleCase
 } from '../../methods';
 
+export interface IdentifierSpec {
+  constantCase: string;
+  camelCase: string;
+  dotCase: string;
+  headerCase: string;
+  paramCase: string;
+  pascalCase: string;
+  snakeCase: string;
+  titleCase: string;
+}
+
 export class Identifier {
   public static readonly EMPTY: Identifier = Identifier.create('');
 
@@ -94,7 +105,7 @@ export class Identifier {
       .some((value: string) => !value);
   }
 
-  toJSON(): any {
+  toJSON(): IdentifierSpec {
     return {
       constantCase: this.constantCase,
       camelCase: this.camelCase,

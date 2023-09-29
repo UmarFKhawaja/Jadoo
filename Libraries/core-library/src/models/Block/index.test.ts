@@ -1,4 +1,4 @@
-import { Block } from '.';
+import { Block, BlockSpec } from '.';
 
 describe('Block', () => {
   describe('EMPTY', () => {
@@ -58,6 +58,45 @@ describe('Block', () => {
       expect(block.lines[0]).toEqual('  alpha bravo charlie');
       expect(block.lines[1]).toEqual('');
       expect(block.lines[2]).toEqual('  golf mother tango');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('have no lines if block is EMPTY', () => {
+      const json: BlockSpec = Block.EMPTY.toJSON();
+
+      expect(json).toHaveProperty('lines');
+      expect(json.lines).toEqual([]);
+    });
+
+    it('have an empty line if block is BLANK', () => {
+      const json: BlockSpec = Block.BLANK.toJSON();
+
+      expect(json).toHaveProperty('lines');
+      expect(json.lines).toEqual([
+        ''
+      ]);
+    });
+
+    it('have lines block was created with', () => {
+      const json: BlockSpec = Block
+        .create(
+          'hello',
+          'world',
+          '',
+          'goodbye',
+          'world'
+        )
+        .toJSON();
+
+      expect(json).toHaveProperty('lines');
+      expect(json.lines).toEqual([
+        'hello',
+        'world',
+        '',
+        'goodbye',
+        'world'
+      ]);
     });
   });
 
