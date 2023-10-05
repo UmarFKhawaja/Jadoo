@@ -2,3 +2,6 @@
 /Libraries/**/coverage/
 /Libraries/**/lib/
 /Libraries/**/node_modules/
+/Plugins/**/coverage/
+/Plugins/**/lib/
+/Plugins/**/node_modules/
