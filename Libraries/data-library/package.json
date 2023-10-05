@@ -14,7 +14,7 @@
     "build": "tsc",
     "watch": "tsc -w",
     "clean": "rm -rf lib",
-    "test": "jest --coverage"
+    "test": "jest"
   },
   "dependencies": {
     "@jadoo/core-library": "^0.0.0",
