@@ -1,3 +1,4 @@
+export * from './guessFileMode';
 export * from './isSpecial';
 export * from './joinLines';
 export * from './toCamelCase';
