@@ -1,0 +1,7 @@
+kind: Entity
+apiVersion: v1
+metadata:
+  name: entity
+spec:
+  schema:
+    ref: asset

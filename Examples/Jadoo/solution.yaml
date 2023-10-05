@@ -1,0 +1,4 @@
+kind: Solution
+apiVersion: v1
+metadata:
+  name: jadoo

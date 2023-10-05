@@ -1,0 +1,7 @@
+kind: Entity
+apiVersion: v1
+metadata:
+  name: user
+spec:
+  schema:
+    ref: account

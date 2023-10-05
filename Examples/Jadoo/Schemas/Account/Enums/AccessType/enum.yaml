@@ -1,0 +1,7 @@
+kind: Enum
+apiVersion: v1
+metadata:
+  name: access-type
+spec:
+  schema:
+    ref: account

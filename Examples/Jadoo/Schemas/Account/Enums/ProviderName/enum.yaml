@@ -1,0 +1,7 @@
+kind: Enum
+apiVersion: v1
+metadata:
+  name: provider-name
+spec:
+  schema:
+    ref: account
