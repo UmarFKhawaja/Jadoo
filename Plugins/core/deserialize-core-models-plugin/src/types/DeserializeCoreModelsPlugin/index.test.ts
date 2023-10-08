@@ -8,7 +8,7 @@ describe('DeserializeCoreModelsPlugin', () => {
     it('constructs an instance of the plugin', () => {
       const plugin: DeserializeCoreModelsPlugin = new DeserializeCoreModelsPlugin(
         Identifier.create('DeserializeCoreModels'),
-        new DeserializeCoreModelsOptions('../../../Example')
+        new DeserializeCoreModelsOptions('../../../Examples')
       );
 
       expect(plugin).toBeInstanceOf(Plugin);
@@ -20,7 +20,7 @@ describe('DeserializeCoreModelsPlugin', () => {
     it('executes the plugin', async () => {
       const plugin: DeserializeCoreModelsPlugin = new DeserializeCoreModelsPlugin(
         Identifier.create('DeserializeCoreModels'),
-        new DeserializeCoreModelsOptions('../../../Example')
+        new DeserializeCoreModelsOptions('../../../Examples')
       );
 
       const startState: State = new State();
