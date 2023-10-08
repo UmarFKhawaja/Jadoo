@@ -1,5 +1,5 @@
 import { guessFileMode } from '../../methods';
-import { FileMode } from '../../types';
+import { FileMode, FileOptions } from '../../types';
 import { Path } from '../Path';
 
 export class File extends Path {
@@ -19,8 +19,8 @@ export class File extends Path {
     this._mode = mode;
   }
 
-  static override create(name: string, mode?: FileMode): File {
-    const file: File = new File(name, mode || guessFileMode(name));
+  static override create(name: string, options?: FileOptions): File {
+    const file: File = new File(name, options?.mode || guessFileMode(name));
 
     return file;
   }

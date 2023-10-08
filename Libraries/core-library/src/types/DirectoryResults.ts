@@ -1,0 +1,7 @@
+export enum DirectoryResults {
+  FILES_ONLY = 1,
+
+  DIRECTORIES_ONLY = 2,
+
+  EVERYTHING = FILES_ONLY & DIRECTORIES_ONLY
+}
