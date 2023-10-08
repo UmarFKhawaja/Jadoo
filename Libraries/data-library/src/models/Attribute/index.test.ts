@@ -1,10 +1,15 @@
 import { Identifier } from '@jadoo/core-library';
-import { Attribute, AttributeKind, AttributeSpec, Entity, Schema } from '..';
+import { Attribute, AttributeKind, AttributeSpec, Entity, Schema, Solution } from '..';
+
+const solution: Solution = Solution.create({
+  kind: 'Solution',
+  name: 'Jadoo'
+});
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
   name: 'finance'
-});
+}, solution);
 
 const entity: Entity = Entity.create({
   kind: 'Entity',
@@ -254,7 +259,7 @@ describe('Attribute', () => {
         isNullable: false,
         enum: {
           kind: 'EnumReference',
-          name: ['account-type', 'finance']
+          name: ['account-type', 'finance', 'jadoo']
         }
       }, entity);
 
@@ -273,7 +278,7 @@ describe('Attribute', () => {
         isNullable: false,
         entity: {
           kind: 'EntityReference',
-          name: ['account', 'finance']
+          name: ['account', 'finance', 'jadoo']
         }
       }, entity);
 

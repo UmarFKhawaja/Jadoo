@@ -4,4 +4,5 @@ export * from './Enum';
 export * from './Model';
 export * from './Reference';
 export * from './Schema';
+export * from './Solution';
 export * from './Value';

@@ -3,11 +3,17 @@ import { EnumAttribute } from '..';
 import { Entity } from '../../Entity';
 import { EnumReference } from '../../Reference';
 import { Schema } from '../../Schema';
+import { Solution } from '../../Solution';
+
+const solution: Solution = Solution.create({
+  kind: 'Solution',
+  name: 'Jadoo'
+});
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
   name: 'finance'
-});
+}, solution);
 
 const entity: Entity = Entity.create({
   kind: 'Entity',
@@ -32,7 +38,7 @@ describe('EnumAttribute', () => {
         isNullable: true,
         enum: {
           kind: 'EnumReference',
-          name: ['account-type', 'finance']
+          name: ['account-type', 'finance', 'jadoo']
         }
       }, entity);
 
@@ -56,7 +62,7 @@ describe('EnumAttribute', () => {
           name: '',
           enum: {
             kind: 'EnumReference',
-            name: ['account-type', 'finance']
+            name: ['account-type', 'finance', 'jadoo']
           }
         }, entity);
       }).toThrowError('invalid attribute');

@@ -2,11 +2,17 @@ import { Title } from '@jadoo/core-library';
 import { Entity } from '.';
 import { Attribute } from '../Attribute';
 import { Schema } from '../Schema';
+import { Solution } from '../Solution';
+
+const solution: Solution = Solution.create({
+  kind: 'Solution',
+  name: 'Jadoo'
+});
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
   name: 'finance'
-});
+}, solution);
 
 describe('Entity', () => {
   describe('create', () => {

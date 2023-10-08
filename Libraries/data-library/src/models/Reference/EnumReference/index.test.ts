@@ -6,7 +6,7 @@ describe('EnumReference', () => {
     it('creates an enum reference', () => {
       const enumReference: EnumReference = EnumReference.create({
         kind: 'EnumReference',
-        name: ['account-type', 'finance']
+        name: ['account-type', 'finance', 'jadoo']
       });
 
       expect(enumReference).toBeInstanceOf(EnumReference);
@@ -24,7 +24,7 @@ describe('EnumReference', () => {
       expect(() => {
         EnumReference.create({
           kind: 'EnumReference',
-          name: ['', 'finance']
+          name: ['', 'finance', 'jadoo']
         });
       }).toThrowError('invalid enum reference');
     });
@@ -33,7 +33,16 @@ describe('EnumReference', () => {
       expect(() => {
         EnumReference.create({
           kind: 'EnumReference',
-          name: ['account-type', '']
+          name: ['account-type', '', 'jadoo']
+        });
+      }).toThrowError('invalid enum reference');
+    });
+
+    it('does not create an enum reference without a solution', () => {
+      expect(() => {
+        EnumReference.create({
+          kind: 'EnumReference',
+          name: ['account-type', 'finance', '']
         });
       }).toThrowError('invalid enum reference');
     });

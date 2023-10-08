@@ -2,11 +2,17 @@ import { Title } from '@jadoo/core-library';
 import { Enum } from '.';
 import { Value } from '../Value';
 import { Schema } from '../Schema';
+import { Solution } from '../Solution';
+
+const solution: Solution = Solution.create({
+  kind: 'Solution',
+  name: 'Jadoo'
+});
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
   name: 'finance'
-});
+}, solution);
 
 describe('Enum', () => {
   describe('create', () => {

@@ -1,6 +1,7 @@
 import { Identifier, Title } from '@jadoo/core-library';
 
 export type ReferenceKind =
+  | 'SolutionReference'
   | 'SchemaReference'
   | 'EntityReference'
   | 'EnumReference'
@@ -8,35 +9,41 @@ export type ReferenceKind =
   | 'ValueReference';
 
 export type ReferenceSpec =
+  | SolutionReferenceSpec
   | SchemaReferenceSpec
   | EntityReferenceSpec
   | EnumReferenceSpec
   | AttributeReferenceSpec
   | ValueReferenceSpec;
 
+export interface SolutionReferenceSpec {
+  kind: 'SolutionReference';
+  name: string;
+}
+
 export interface SchemaReferenceSpec {
   kind: 'SchemaReference';
-  name: string;
+  name: [string, string];
 }
 
 export interface EntityReferenceSpec {
   kind: 'EntityReference';
-  name: [string, string];
+  name: [string, string, string];
 }
 
 export interface EnumReferenceSpec {
   kind: 'EnumReference';
-  name: [string, string];
+  name: [string, string, string];
 }
 
 export interface AttributeReferenceSpec {
   kind: 'AttributeReference';
-  name: [string, string, string];
+  name: [string, string, string, string];
 }
 
 export interface ValueReferenceSpec {
   kind: 'ValueReference';
-  name: [string, string, string];
+  name: [string, string, string, string];
 }
 
 export abstract class Reference {
@@ -47,6 +54,9 @@ export abstract class Reference {
     const kind: ReferenceKind = json.kind;
 
     switch (kind) {
+      case 'SolutionReference':
+        return SolutionReference.create(json as SolutionReferenceSpec);
+
       case 'SchemaReference':
         return SchemaReference.create(json as SchemaReferenceSpec);
 
@@ -68,7 +78,7 @@ export abstract class Reference {
   }
 }
 
-export class SchemaReference extends Reference {
+export class SolutionReference extends Reference {
   private readonly _name: Identifier;
 
   protected constructor(
@@ -83,15 +93,61 @@ export class SchemaReference extends Reference {
     return this._name;
   }
 
-  static override create(json: SchemaReferenceSpec): SchemaReference {
+  static override create(json: SolutionReferenceSpec): SolutionReference {
     const name: string = json.name;
+
+    if (!name) {
+      throw new Error('invalid solution reference');
+    }
+
+    const solutionReference: SolutionReference = new SolutionReference(
+      Identifier.create(name)
+    );
+
+    return solutionReference;
+  }
+}
+
+export class SchemaReference extends Reference {
+  private readonly _name: Identifier;
+
+  private readonly _solution: SolutionReference;
+
+  protected constructor(
+    name: Identifier,
+    solution: SolutionReference
+  ) {
+    super();
+
+    this._name = name;
+    this._solution = solution;
+  }
+
+  get name(): Identifier {
+    return this._name;
+  }
+
+  get solution(): SolutionReference {
+    return this._solution;
+  }
+
+  static override create(json: SchemaReferenceSpec): SchemaReference {
+    const [name, solution]: [string, string] = json.name;
 
     if (!name) {
       throw new Error('invalid schema reference');
     }
 
+    if (!solution) {
+      throw new Error('invalid schema reference');
+    }
+
     const schemaReference: SchemaReference = new SchemaReference(
-      Identifier.create(name)
+      Identifier.create(name),
+      SolutionReference.create({
+        kind: 'SolutionReference',
+        name: solution
+      })
     );
 
     return schemaReference;
@@ -122,7 +178,7 @@ export class EntityReference extends Reference {
   }
 
   static override create(json: EntityReferenceSpec): EntityReference {
-    const [name, schema]: [string, string] = json.name;
+    const [name, schema, solution]: [string, string, string] = json.name;
 
     if (!name) {
       throw new Error('invalid entity reference');
@@ -132,11 +188,15 @@ export class EntityReference extends Reference {
       throw new Error('invalid entity reference');
     }
 
+    if (!solution) {
+      throw new Error('invalid entity reference');
+    }
+
     const entityReference: EntityReference = new EntityReference(
       Title.create(name),
       SchemaReference.create({
         kind: 'SchemaReference',
-        name: schema
+        name: [schema, solution]
       })
     );
 
@@ -168,7 +228,7 @@ export class EnumReference extends Reference {
   }
 
   static override create(json: EnumReferenceSpec): EnumReference {
-    const [name, schema]: [string, string] = json.name;
+    const [name, schema, solution]: [string, string, string] = json.name;
 
     if (!name) {
       throw new Error('invalid enum reference');
@@ -178,11 +238,15 @@ export class EnumReference extends Reference {
       throw new Error('invalid enum reference');
     }
 
+    if (!solution) {
+      throw new Error('invalid enum reference');
+    }
+
     const enumReference: EnumReference = new EnumReference(
       Title.create(name),
       SchemaReference.create({
         kind: 'SchemaReference',
-        name: schema
+        name: [schema, solution]
       })
     );
 
@@ -214,7 +278,7 @@ export class AttributeReference extends Reference {
   }
 
   static override create(json: AttributeReferenceSpec): AttributeReference {
-    const [name, entity, schema]: [string, string, string] = json.name;
+    const [name, entity, schema, solution]: [string, string, string, string] = json.name;
 
     if (!name) {
       throw new Error('invalid attribute reference');
@@ -228,11 +292,15 @@ export class AttributeReference extends Reference {
       throw new Error('invalid attribute reference');
     }
 
+    if (!solution) {
+      throw new Error('invalid attribute reference');
+    }
+
     const attributeReference: AttributeReference = new AttributeReference(
       Identifier.create(name),
       EntityReference.create({
         kind: 'EntityReference',
-        name: [entity, schema]
+        name: [entity, schema, solution]
       })
     );
 
@@ -264,7 +332,7 @@ export class ValueReference extends Reference {
   }
 
   static override create(json: ValueReferenceSpec): ValueReference {
-    const [name, $enum, schema]: [string, string, string] = json.name;
+    const [name, $enum, schema, solution]: [string, string, string, string] = json.name;
 
     if (!name) {
       throw new Error('invalid value reference');
@@ -278,11 +346,15 @@ export class ValueReference extends Reference {
       throw new Error('invalid value reference');
     }
 
+    if (!solution) {
+      throw new Error('invalid value reference');
+    }
+
     const valueReference: ValueReference = new ValueReference(
       Identifier.create(name),
       EnumReference.create({
         kind: 'EnumReference',
-        name: [$enum, schema]
+        name: [$enum, schema, solution]
       })
     );
 

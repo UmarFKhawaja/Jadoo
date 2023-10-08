@@ -6,7 +6,7 @@ describe('ValueReference', () => {
     it('creates an value reference', () => {
       const valueReference: ValueReference = ValueReference.create({
         kind: 'ValueReference',
-        name: ['debit', 'account-type', 'finance']
+        name: ['debit', 'account-type', 'finance', 'jadoo']
       });
 
       expect(valueReference).toBeInstanceOf(ValueReference);
@@ -28,7 +28,7 @@ describe('ValueReference', () => {
     expect(() => {
       ValueReference.create({
         kind: 'ValueReference',
-        name: ['', 'account-type', 'finance']
+        name: ['', 'account-type', 'finance', 'jadoo']
       });
     }).toThrowError('invalid value reference');
   });
@@ -37,7 +37,7 @@ describe('ValueReference', () => {
     expect(() => {
       ValueReference.create({
         kind: 'ValueReference',
-        name: ['debit', '', 'finance']
+        name: ['debit', '', 'finance', 'jadoo']
       });
     }).toThrowError('invalid value reference');
   });
@@ -46,7 +46,16 @@ describe('ValueReference', () => {
     expect(() => {
       ValueReference.create({
         kind: 'ValueReference',
-        name: ['debit', 'account-type', '']
+        name: ['debit', 'account-type', '', 'jadoo']
+      });
+    }).toThrowError('invalid value reference');
+  });
+
+  it('does not create an value reference without a solution', () => {
+    expect(() => {
+      ValueReference.create({
+        kind: 'ValueReference',
+        name: ['debit', 'account-type', 'finance', '']
       });
     }).toThrowError('invalid value reference');
   });

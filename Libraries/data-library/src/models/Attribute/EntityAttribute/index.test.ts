@@ -3,11 +3,17 @@ import { EntityAttribute } from '..';
 import { Entity } from '../../Entity';
 import { EntityReference } from '../../Reference';
 import { Schema } from '../../Schema';
+import { Solution } from '../../Solution';
+
+const solution: Solution = Solution.create({
+  kind: 'Solution',
+  name: 'Jadoo'
+});
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
   name: 'finance'
-});
+}, solution);
 
 const entity: Entity = Entity.create({
   kind: 'Entity',
@@ -32,7 +38,7 @@ describe('EntityAttribute', () => {
         isNullable: true,
         entity: {
           kind: 'EntityReference',
-          name: ['account', 'finance']
+          name: ['account', 'finance', 'jadoo']
         }
       }, entity);
 
@@ -56,7 +62,7 @@ describe('EntityAttribute', () => {
           name: '',
           entity: {
             kind: 'EntityReference',
-            name: ['account', 'finance']
+            name: ['account', 'finance', 'jadoo']
           }
         }, entity);
       }).toThrowError('invalid attribute');

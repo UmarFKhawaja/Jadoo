@@ -1,6 +1,7 @@
 import { Identifier } from '@jadoo/core-library';
 import { Entity, EntitySpec } from '../Entity';
 import { Enum, EnumSpec } from '../Enum';
+import { Solution } from '../Solution';
 
 export interface SchemaSpec {
   kind: 'Schema';
@@ -42,7 +43,7 @@ export class Schema {
     ];
   }
 
-  static create(json: SchemaSpec): Schema {
+  static create(json: SchemaSpec, solution: Solution): Schema {
     const name: string = json.name;
     const entities: EntitySpec[] = json.entities || [];
     const enums: EnumSpec[] = json.enums || [];

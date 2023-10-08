@@ -2,6 +2,12 @@ import { Identifier } from '@jadoo/core-library';
 import { Schema } from '.';
 import { Entity } from '../Entity';
 import { Enum } from '../Enum';
+import { Solution } from '../Solution';
+
+const solution: Solution = Solution.create({
+  kind: 'Solution',
+  name: 'Jadoo'
+});
 
 describe('Schema', () => {
   describe('create', () => {
@@ -61,7 +67,7 @@ describe('Schema', () => {
             ]
           }
         ]
-      });
+      }, solution);
 
       expect(schema).toBeInstanceOf(Schema);
     });
@@ -71,7 +77,7 @@ describe('Schema', () => {
         Schema.create({
           kind: 'Schema',
           name: ''
-        })
+        }, solution)
       }).toThrowError('invalid schema');
     });
   });
@@ -81,7 +87,7 @@ describe('Schema', () => {
       const schema: Schema = Schema.create({
         kind: 'Schema',
         name: 'finance'
-      });
+      }, solution);
 
       expect(schema.name).toBeInstanceOf(Identifier);
       expect(schema.name.paramCase).toEqual('finance');
@@ -145,7 +151,7 @@ describe('Schema', () => {
             ]
           }
         ]
-      });
+      }, solution);
 
       const entities: Entity[] = schema.entities;
 
@@ -222,7 +228,7 @@ describe('Schema', () => {
             ]
           }
         ]
-      });
+      }, solution);
 
       const enums: Enum[] = schema.enums;
 

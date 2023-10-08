@@ -6,7 +6,7 @@ describe('EntityReference', () => {
     it('creates an entity reference', () => {
       const entityReference: EntityReference = EntityReference.create({
         kind: 'EntityReference',
-        name: ['account', 'finance']
+        name: ['account', 'finance', 'jadoo']
       });
 
       expect(entityReference).toBeInstanceOf(EntityReference);
@@ -24,7 +24,7 @@ describe('EntityReference', () => {
       expect(() => {
         EntityReference.create({
           kind: 'EntityReference',
-          name: ['', 'finance']
+          name: ['', 'finance', 'jadoo']
         });
       }).toThrowError('invalid entity reference');
     });
@@ -33,7 +33,16 @@ describe('EntityReference', () => {
       expect(() => {
         EntityReference.create({
           kind: 'EntityReference',
-          name: ['account', '']
+          name: ['account', '', 'jadoo']
+        });
+      }).toThrowError('invalid entity reference');
+    });
+
+    it('does not create an entity reference without a solution', () => {
+      expect(() => {
+        EntityReference.create({
+          kind: 'EntityReference',
+          name: ['account', 'finance', '']
         });
       }).toThrowError('invalid entity reference');
     });

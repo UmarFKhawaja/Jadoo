@@ -1,11 +1,17 @@
 import { IntegerValue } from '..';
 import { Enum } from '../../Enum';
 import { Schema } from '../../Schema';
+import { Solution } from '../../Solution';
+
+const solution: Solution = Solution.create({
+  kind: 'Solution',
+  name: 'Jadoo'
+});
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
   name: 'finance'
-});
+}, solution);
 
 const $enum: Enum = Enum.create({
   kind: 'Enum',

@@ -6,7 +6,7 @@ describe('AttributeReference', () => {
     it('creates an attribute reference', () => {
       const attributeReference: AttributeReference = AttributeReference.create({
         kind: 'AttributeReference',
-        name: ['id', 'account', 'finance']
+        name: ['id', 'account', 'finance', 'jadoo']
       });
 
       expect(attributeReference).toBeInstanceOf(AttributeReference);
@@ -27,7 +27,7 @@ describe('AttributeReference', () => {
       expect(() => {
         AttributeReference.create({
           kind: 'AttributeReference',
-          name: ['', 'account', 'finance']
+          name: ['', 'account', 'finance', 'jadoo']
         });
       }).toThrowError('invalid attribute reference');
     });
@@ -36,7 +36,7 @@ describe('AttributeReference', () => {
       expect(() => {
         AttributeReference.create({
           kind: 'AttributeReference',
-          name: ['id', '', 'finance']
+          name: ['id', '', 'finance', 'jadoo']
         });
       }).toThrowError('invalid attribute reference');
     });
@@ -45,7 +45,16 @@ describe('AttributeReference', () => {
       expect(() => {
         AttributeReference.create({
           kind: 'AttributeReference',
-          name: ['id', 'account', '']
+          name: ['id', 'account', '', 'jadoo']
+        });
+      }).toThrowError('invalid attribute reference');
+    });
+
+    it('does not create an attribute reference without a solution', () => {
+      expect(() => {
+        AttributeReference.create({
+          kind: 'AttributeReference',
+          name: ['id', 'account', 'finance', '']
         });
       }).toThrowError('invalid attribute reference');
     });
