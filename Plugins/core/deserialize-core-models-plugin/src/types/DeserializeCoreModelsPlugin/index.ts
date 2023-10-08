@@ -1,6 +1,5 @@
 import { File, Directory, DirectoryMode, Identifier, Path } from '@jadoo/core-library';
 import { InputOptions, Options, Plugin, State } from '@jadoo/plugin-library';
-import * as process from 'process';
 
 export class DeserializeCoreModelsPlugin extends Plugin {
   constructor(name: Identifier, options: Options) {
