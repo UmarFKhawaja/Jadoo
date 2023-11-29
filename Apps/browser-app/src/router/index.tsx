@@ -12,13 +12,13 @@ import {
   ShowPlaceholderElement,
   SignInElement,
   SignUpElement,
-  ViewRootElement
+  ViewHomeElement
 } from '../elements';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <ViewRootElement/>
+    element: <ViewHomeElement/>
   },
   {
     path: '/sign-in',

@@ -1,3 +1,3 @@
 import classes from './index.module.css';
 
-export default classes;
+export const styles = classes;
