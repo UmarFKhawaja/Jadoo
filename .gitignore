@@ -1,5 +1,6 @@
 /node_modules/
 /Apps/**/coverage/
+/Apps/**/build/
 /Apps/**/lib/
 /Apps/**/node_modules/
 /Apps/**/.env
