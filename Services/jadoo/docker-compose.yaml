@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_USER: ${DATABASE_USERNAME}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_DATABASE}
+    ports:
+      - '${DATABASE_PORT}:3306'
+    networks:
+      - jadoo
+    restart: always
+
+  redis:
+    image: redis:latest
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - '${CACHE_PORT}:6379'
+    volumes:
+      - ./jadoo-redis/conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - jadoo
+    restart: always
+
+  cerbos:
+    image: ghcr.io/cerbos/cerbos:latest
+    command: server --config=/conf.yaml
+    ports:
+      - '${AUTH_HTTP_PORT}:3592'
+      - '${AUTH_GRPC_PORT}:3593'
+    volumes:
+      - './jadoo-cerbos/conf.yaml:/conf.yaml'
+      - './jadoo-cerbos/policies:/policies'
+    networks:
+      - jadoo
+    restart: always
+
+networks:
+  jadoo:

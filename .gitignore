@@ -5,3 +5,4 @@
 /Plugins/**/coverage/
 /Plugins/**/lib/
 /Plugins/**/node_modules/
+/Services/**/.env
