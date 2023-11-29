@@ -13,6 +13,7 @@
     "Plugins/*"
   ],
   "devDependencies": {
+    "glob": "^10.3.10",
     "lerna": "^8.0.0"
   }
 }
