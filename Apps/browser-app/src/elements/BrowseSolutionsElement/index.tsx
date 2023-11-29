@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Container, SimpleGrid } from '@mantine/core';
-import { Solution, SolutionCard, SolutionSkeleton } from '@jadoo/ui-module';
-import { useInfiniteData } from '../../hooks';
+import { Solution, SolutionCard, SolutionSkeleton, useInfiniteData } from '@jadoo/ui-module';
 import { getSolutionsQuery } from './commands';
 
 export function BrowseSolutionsElement() {

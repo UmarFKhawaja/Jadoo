@@ -2,8 +2,7 @@ import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Button, Text } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
-import { Solution } from '@jadoo/ui-module';
-import { useFiniteData } from '../../hooks';
+import { Solution, useFiniteData } from '@jadoo/ui-module';
 import { getSolutionsQuery } from './commands';
 import { SolutionData } from './types';
 
