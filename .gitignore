@@ -1,4 +1,5 @@
 /node_modules/
+Keys/localhost.*
 /Libraries/**/coverage/
 /Libraries/**/lib/
 /Libraries/**/node_modules/
