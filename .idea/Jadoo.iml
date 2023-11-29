@@ -5,6 +5,11 @@
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/Libraries/core-library/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/Libraries/data-library/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/Libraries/plugin-library/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/Modules/data-module/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/Plugins/core/deserialize-core-models-plugin/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
