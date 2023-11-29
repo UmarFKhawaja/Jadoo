@@ -7,7 +7,12 @@
     "test": "lerna run test",
     "clean": "lerna run clean"
   },
+  "workspaces": [
+    "Libraries/*",
+    "Modules/*",
+    "Plugins/*"
+  ],
   "devDependencies": {
-    "lerna": "^6.6.2"
+    "lerna": "^8.0.0"
   }
 }

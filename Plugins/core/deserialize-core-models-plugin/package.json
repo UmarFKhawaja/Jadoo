@@ -20,19 +20,19 @@
     "@jadoo/core-library": "^0.0.0",
     "@jadoo/data-library": "^0.0.0",
     "@jadoo/plugin-library": "^0.0.0",
-    "inversify": "^6.0.1",
+    "inversify": "^6.0.2",
     "lodash": "^4.17.21",
     "pluralize": "^8.0.0",
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.5",
-    "@types/lodash": "^4.14.198",
-    "@types/node": "^18.15.3",
-    "@types/pluralize": "^0.0.30",
+    "@types/jest": "^29.5.10",
+    "@types/lodash": "^4.14.202",
+    "@types/node": "^18.18.13",
+    "@types/pluralize": "^0.0.33",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.2"
   },
   "jest": {
     "transform": {
