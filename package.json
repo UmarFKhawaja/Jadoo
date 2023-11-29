@@ -2,10 +2,9 @@
   "name": "@jadoo/project",
   "version": "0.0.0",
   "scripts": {
-    "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
-    "test": "lerna run test",
-    "clean": "lerna run clean"
+    "clean": "lerna run clean",
+    "test": "lerna run test"
   },
   "workspaces": [
     "Libraries/**",
