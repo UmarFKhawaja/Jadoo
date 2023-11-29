@@ -1,4 +1,8 @@
 /node_modules/
+/Apps/**/coverage/
+/Apps/**/lib/
+/Apps/**/node_modules/
+/Apps/**/.env
 /Keys/localhost.*
 /Libraries/**/coverage/
 /Libraries/**/lib/

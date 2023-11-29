@@ -5,6 +5,7 @@
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/Apps/server-app/lib" />
       <excludeFolder url="file://$MODULE_DIR$/Libraries/core-library/lib" />
       <excludeFolder url="file://$MODULE_DIR$/Libraries/data-library/lib" />
       <excludeFolder url="file://$MODULE_DIR$/Libraries/plugin-library/lib" />
