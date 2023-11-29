@@ -1,25 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider as FrameworkProvider } from '@mantine/core';
 import { Notifications as NotificationsProvider } from '@mantine/notifications';
-import '@mantine/core/styles.css';
-import '@mantine/notifications/styles.css';
-import { COOKIES_PROVIDER_DEFAULT_SET_OPTIONS } from './constants';
 import { SessionProvider } from '@jadoo/ui-module';
+import { COOKIES_PROVIDER_DEFAULT_SET_OPTIONS } from './constants';
 import { config } from './config';
 import { router } from './router';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
     <CookiesProvider defaultSetOptions={COOKIES_PROVIDER_DEFAULT_SET_OPTIONS}>
       <SessionProvider config={config}>
-        <MantineProvider>
+        <FrameworkProvider>
           <NotificationsProvider/>
           <RouterProvider router={router}/>
-        </MantineProvider>
+        </FrameworkProvider>
       </SessionProvider>
     </CookiesProvider>
-  </React.StrictMode>
+  </StrictMode>
 );
