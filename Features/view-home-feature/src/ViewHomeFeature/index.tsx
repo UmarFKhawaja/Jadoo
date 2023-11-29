@@ -1,10 +1,10 @@
+import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Box, Button, Container, Stack, Text, Title } from '@mantine/core';
 import { useSession } from '@jadoo/ui-module';
 import { styles } from './styles';
-import { useNavigate } from 'react-router';
 
-export function ViewHomeElement() {
+export function ViewHomeFeature() {
   const navigate = useNavigate();
 
   const { isAuthenticated } = useSession(navigate);

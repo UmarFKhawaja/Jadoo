@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { ViewHomeFeature } from '@jadoo/view-home-feature';
 import {
   BrowseElement,
   BrowseSolutionsElement,
@@ -11,14 +12,13 @@ import {
   ManageSettingsElement,
   ShowPlaceholderElement,
   SignInElement,
-  SignUpElement,
-  ViewHomeElement
+  SignUpElement
 } from '../elements';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <ViewHomeElement/>
+    element: <ViewHomeFeature/>
   },
   {
     path: '/sign-in',

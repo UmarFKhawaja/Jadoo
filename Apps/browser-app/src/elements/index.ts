@@ -10,4 +10,3 @@ export * from './ManageSettingsElement';
 export * from './ShowPlaceholderElement';
 export * from './SignInElement';
 export * from './SignUpElement';
-export * from './ViewHomeElement';
