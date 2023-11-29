@@ -6,7 +6,7 @@ server:
     enabled: true
     adminCredentials:
       username: jadoo
-      passwordHash: eTAvUndhRXkK
+      passwordHash: JDJ5JDEwJFhFYmFyMXNZc3VhWkhtbTRTOURZMWVBNFRUWW5oZGpKMGtZdHN1UTZJcXhPMDAyL1J3YUV5Cg==
 
 storage:
   driver: "disk"
