@@ -1,18 +1,18 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { ManageOverviewFeature } from '@jadoo/manage-overview-feature';
+import { ManageProfileFeature } from '@jadoo/manage-profile-feature';
+import { ManageSettingsFeature } from '@jadoo/manage-settings-feature';
+import { ManageSolutionsFeature } from '@jadoo/manage-solutions-feature';
+import { ShowPlaceholderFeature } from '@jadoo/show-placeholder-feature';
+import { SignInFeature } from '@jadoo/sign-in-feature';
+import { SignUpFeature } from '@jadoo/sign-up-feature';
 import { ViewHomeFeature } from '@jadoo/view-home-feature';
+import { config } from '../config';
 import {
   BrowseElement,
   BrowseSolutionsElement,
   CreateSolutionElement,
-  ManageElement,
-  ManageOverviewElement,
-  ManagePlansElement,
-  ManageProfileElement,
-  ManageSolutionsElement,
-  ManageSettingsElement,
-  ShowPlaceholderElement,
-  SignInElement,
-  SignUpElement
+  ManageElement
 } from '../elements';
 
 export const router = createBrowserRouter([
@@ -22,11 +22,11 @@ export const router = createBrowserRouter([
   },
   {
     path: '/sign-in',
-    element: <SignInElement/>
+    element: <SignInFeature config={config}/>
   },
   {
     path: '/sign-up',
-    element: <SignUpElement/>
+    element: <SignUpFeature config={config}/>
   },
   {
     path: '/manage',
@@ -34,23 +34,19 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <ManageOverviewElement/>
-      },
-      {
-        path: 'plans',
-        element: <ManagePlansElement/>
+        element: <ManageOverviewFeature/>
       },
       {
         path: 'solutions',
-        element: <ManageSolutionsElement/>
+        element: <ManageSolutionsFeature/>
       },
       {
         path: 'profile',
-        element: <ManageProfileElement/>
+        element: <ManageProfileFeature/>
       },
       {
         path: 'settings',
-        element: <ManageSettingsElement/>
+        element: <ManageSettingsFeature/>
       }
     ]
   },
@@ -68,41 +64,41 @@ export const router = createBrowserRouter([
       },
       {
         path: 'features',
-        element: <ShowPlaceholderElement/>,
+        element: <ShowPlaceholderFeature/>,
         children: [
           {
             path: 'share-progress',
-            element: <ShowPlaceholderElement/>
+            element: <ShowPlaceholderFeature/>
           },
           {
             path: 'enjoy-variety',
-            element: <ShowPlaceholderElement/>
+            element: <ShowPlaceholderFeature/>
           },
           {
             path: 'track-meals',
-            element: <ShowPlaceholderElement/>
+            element: <ShowPlaceholderFeature/>
           },
           {
             path: 'inform-choices',
-            element: <ShowPlaceholderElement/>
+            element: <ShowPlaceholderFeature/>
           },
           {
             path: 'set-goals',
-            element: <ShowPlaceholderElement/>
+            element: <ShowPlaceholderFeature/>
           },
           {
             path: 'socialize-securely',
-            element: <ShowPlaceholderElement/>
+            element: <ShowPlaceholderFeature/>
           }
         ]
       },
       {
         path: 'tutorials',
-        element: <ShowPlaceholderElement/>
+        element: <ShowPlaceholderFeature/>
       },
       {
         path: 'techniques',
-        element: <ShowPlaceholderElement/>
+        element: <ShowPlaceholderFeature/>
       }
     ]
   }

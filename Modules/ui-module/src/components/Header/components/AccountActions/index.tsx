@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import {useNavigate } from 'react-router-dom';
 import { ActionIcon, Button, Group } from '@mantine/core';
-import { IconChefHat, IconLayoutDashboard, IconNotebook, IconSettings, IconUser } from '@tabler/icons-react';
+import { IconHexagons, IconLayoutDashboard, IconSettings, IconUser } from '@tabler/icons-react';
 import { useSession } from '../../../../providers';
 
 export function AccountActions() {
@@ -18,11 +18,8 @@ export function AccountActions() {
               <ActionIcon variant="default" size="lg" component={Link} to="/manage">
                 <IconLayoutDashboard/>
               </ActionIcon>
-              <ActionIcon variant="default" size="lg" component={Link} to="/manage/plans">
-                <IconNotebook/>
-              </ActionIcon>
               <ActionIcon variant="default" size="lg" component={Link} to="/manage/solutions">
-                <IconChefHat/>
+                <IconHexagons/>
               </ActionIcon>
               <ActionIcon variant="default" size="lg" component={Link} to="/manage/profile">
                 <IconUser/>

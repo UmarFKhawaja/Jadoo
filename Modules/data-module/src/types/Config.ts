@@ -1,5 +1,5 @@
 import { readFileSync as readFile } from 'fs';
-import { parseBoolean, parseNumber, parseString } from '../methods';
+import { parseBoolean, parseNumber, parseString } from '@jadoo/core-module';
 import { AuthConfig } from './AuthConfig';
 import { CacheConfig } from './CacheConfig';
 import { CORSConfig } from './CORSConfig';
@@ -114,7 +114,7 @@ export class Config {
     }
 
     function getPort(): number {
-      const port: number = parseNumber('SERVER_PORT', 6180);
+      const port: number = parseNumber('SERVER_PORT', 80);
 
       return port;
     }

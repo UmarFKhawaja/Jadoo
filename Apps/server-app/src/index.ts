@@ -1,10 +1,9 @@
 import 'reflect-metadata';
-import { Config, DATA_SOURCE } from '@jadoo/data-module';
+import { DATA_SOURCE } from '@jadoo/data-module';
+import { config } from './config';
 import { createExpressServer } from './methods';
 
 process.nextTick(async () => {
-  const config: Config = Config.instance;
-
   await DATA_SOURCE.initialize();
 
   const { httpServer, options } = await createExpressServer(config);

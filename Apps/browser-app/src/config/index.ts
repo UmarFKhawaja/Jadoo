@@ -1,5 +1,3 @@
-export const config = {
-  server: {
-    url: import.meta.env.SERVER_URL
-  }
-};
+import { Config } from '@jadoo/ui-module';
+
+export const config: Config = Config.instance;

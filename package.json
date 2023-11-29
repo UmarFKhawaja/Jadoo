@@ -15,6 +15,7 @@
     "Tools/**"
   ],
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "glob": "^10.3.10",
     "nanoid": "^5.0.3",
     "lerna": "^8.0.0"

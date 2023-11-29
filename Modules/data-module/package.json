@@ -20,6 +20,7 @@
   "dependencies": {
     "@cerbos/grpc": "^0.14.0",
     "@cerbos/http": "^0.15.0",
+    "@jadoo/core-module": "^0.0.0",
     "bcryptjs": "^2.4.3",
     "dayjs": "^1.11.10",
     "graphql": "^16.8.1",
