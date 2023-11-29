@@ -1,4 +1,7 @@
 kind: Schema
 apiVersion: v1
 metadata:
-  name: 'Asset'
+  name: asset
+spec:
+  solution:
+    ref: jadoo

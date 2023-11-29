@@ -50,6 +50,8 @@ export abstract class Reference {
   protected constructor() {
   }
 
+  abstract toJSON(): ReferenceSpec;
+
   static create(json: ReferenceSpec): Reference {
     const kind: ReferenceKind = json.kind;
 
@@ -93,6 +95,13 @@ export class SolutionReference extends Reference {
     return this._name;
   }
 
+  override toJSON(): SolutionReferenceSpec {
+    return {
+      kind: 'SolutionReference',
+      name: this.name.paramCase
+    };
+  }
+
   static override create(json: SolutionReferenceSpec): SolutionReference {
     const name: string = json.name;
 
@@ -129,6 +138,16 @@ export class SchemaReference extends Reference {
 
   get solution(): SolutionReference {
     return this._solution;
+  }
+
+  override toJSON(): SchemaReferenceSpec {
+    return {
+      kind: 'SchemaReference',
+      name: [
+        this.name.paramCase,
+        this.solution.name.paramCase
+      ]
+    };
   }
 
   static override create(json: SchemaReferenceSpec): SchemaReference {
@@ -175,6 +194,17 @@ export class EntityReference extends Reference {
 
   get schema(): SchemaReference {
     return this._schema;
+  }
+
+  override toJSON(): EntityReferenceSpec {
+    return {
+      kind: 'EntityReference',
+      name: [
+        this.name.singular.paramCase,
+        this.schema.name.paramCase,
+        this.schema.solution.name.paramCase
+      ]
+    };
   }
 
   static override create(json: EntityReferenceSpec): EntityReference {
@@ -227,6 +257,17 @@ export class EnumReference extends Reference {
     return this._schema;
   }
 
+  override toJSON(): EnumReferenceSpec {
+    return {
+      kind: 'EnumReference',
+      name: [
+        this.name.singular.paramCase,
+        this.schema.name.paramCase,
+        this.schema.solution.name.paramCase
+      ]
+    };
+  }
+
   static override create(json: EnumReferenceSpec): EnumReference {
     const [name, schema, solution]: [string, string, string] = json.name;
 
@@ -275,6 +316,18 @@ export class AttributeReference extends Reference {
 
   get entity(): EntityReference {
     return this._entity;
+  }
+
+  override toJSON(): AttributeReferenceSpec {
+    return {
+      kind: 'AttributeReference',
+      name: [
+        this.name.paramCase,
+        this.entity.name.singular.paramCase,
+        this.entity.schema.name.paramCase,
+        this.entity.schema.solution.name.paramCase
+      ]
+    };
   }
 
   static override create(json: AttributeReferenceSpec): AttributeReference {
@@ -329,6 +382,18 @@ export class ValueReference extends Reference {
 
   get $enum(): EnumReference {
     return this._enum;
+  }
+
+  override toJSON(): ValueReferenceSpec {
+    return {
+      kind: 'ValueReference',
+      name: [
+        this.name.paramCase,
+        this.$enum.name.singular.paramCase,
+        this.$enum.schema.name.paramCase,
+        this.$enum.schema.solution.name.paramCase
+      ]
+    };
   }
 
   static override create(json: ValueReferenceSpec): ValueReference {

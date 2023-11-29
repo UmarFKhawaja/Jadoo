@@ -1,17 +1,20 @@
 import { Identifier } from '@jadoo/core-library';
-import { Int32Attribute, IntegerSequence } from '..';
+import { Int32Attribute, Int32AttributeSpec, IntegerSequence } from '..';
 import { Entity } from '../../Entity';
 import { Schema } from '../../Schema';
 import { Solution } from '../../Solution';
 
 const solution: Solution = Solution.create({
   kind: 'Solution',
-  name: 'Jadoo'
+  name: 'Jadoo',
+  schemas: []
 });
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
-  name: 'finance'
+  name: 'finance',
+  entities: [],
+  enums: []
 }, solution);
 
 const entity: Entity = Entity.create({
@@ -71,6 +74,27 @@ describe('Int32Attribute', () => {
           name: ''
         }, entity);
       }).toThrowError('invalid attribute');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns Int32AttributeSpec', () => {
+      const int32Attribute: Int32Attribute = Int32Attribute.create({
+        kind: 'Int32Attribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true
+      }, entity);
+
+      const int32AttributeSpec: Int32AttributeSpec = int32Attribute.toJSON();
+
+      expect(int32AttributeSpec).toEqual({
+        kind: 'Int32Attribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true,
+        sequence: 'NONE'
+      });
     });
   });
 });

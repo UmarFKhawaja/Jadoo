@@ -1,6 +1,6 @@
 import { InputOptions } from '@jadoo/plugin-library';
 
-export class DeserializeCoreModelsOptions extends InputOptions {
+export class MainOptions extends InputOptions {
   constructor(sourceDir: string) {
     super(sourceDir);
   }

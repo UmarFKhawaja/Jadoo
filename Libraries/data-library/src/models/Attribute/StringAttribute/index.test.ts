@@ -1,18 +1,21 @@
 import { Identifier } from '@jadoo/core-library';
-import { StringAttribute } from '..';
-import { MAX_STRING_LENGTH, MIN_STRING_LENGTH } from '../../../constants';
+import { StringAttribute, StringAttributeSpec } from '..';
+import { DEFAULT_STRING_LENGTH, MAX_STRING_LENGTH, MIN_STRING_LENGTH } from '../../../constants';
 import { Entity } from '../../Entity';
 import { Schema } from '../../Schema';
 import { Solution } from '../../Solution';
 
 const solution: Solution = Solution.create({
   kind: 'Solution',
-  name: 'Jadoo'
+  name: 'Jadoo',
+  schemas: []
 });
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
-  name: 'finance'
+  name: 'finance',
+  entities: [],
+  enums: []
 }, solution);
 
 const entity: Entity = Entity.create({
@@ -90,6 +93,27 @@ describe('StringAttribute', () => {
           length: MAX_STRING_LENGTH + 10
         }, entity);
       }).toThrowError('invalid attribute');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns StringAttributeSpec', () => {
+      const stringAttribute: StringAttribute = StringAttribute.create({
+        kind: 'StringAttribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true
+      }, entity);
+
+      const stringAttributeSpec: StringAttributeSpec = stringAttribute.toJSON();
+
+      expect(stringAttributeSpec).toEqual({
+        kind: 'StringAttribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true,
+        length: DEFAULT_STRING_LENGTH
+      });
     });
   });
 });

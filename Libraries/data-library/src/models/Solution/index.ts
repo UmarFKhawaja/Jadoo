@@ -4,7 +4,7 @@ import { Schema, SchemaSpec } from '../Schema';
 export interface SolutionSpec {
   kind: 'Solution';
   name: string;
-  schemas?: SchemaSpec[];
+  schemas: SchemaSpec[];
 }
 
 export class Solution {
@@ -30,9 +30,17 @@ export class Solution {
     ];
   }
 
+  toJSON(): SolutionSpec {
+    return {
+      kind: 'Solution',
+      name: this.name.paramCase,
+      schemas: this.schemas.map((schema: Schema) => schema.toJSON())
+    };
+  }
+
   static create(json: SolutionSpec): Solution {
     const name: string = json.name;
-    const schemas: SchemaSpec[] = json.schemas || [];
+    const schemas: SchemaSpec[] = json.schemas;
 
     if (!name) {
       throw new Error('invalid solution');

@@ -1,5 +1,5 @@
 import { Identifier } from '@jadoo/core-library';
-import { Solution } from '.';
+import { Solution, SolutionSpec } from '.';
 import { Schema } from '../Schema';
 
 describe('Solution', () => {
@@ -75,7 +75,8 @@ describe('Solution', () => {
       expect(() => {
         Solution.create({
           kind: 'Solution',
-          name: ''
+          name: '',
+          schemas: []
         })
       }).toThrowError('invalid solution');
     });
@@ -85,7 +86,8 @@ describe('Solution', () => {
     it('returns a Title', () => {
       const solution: Solution = Solution.create({
         kind: 'Solution',
-        name: 'jadoo'
+        name: 'jadoo',
+        schemas: []
       });
 
       expect(solution.name).toBeInstanceOf(Identifier);
@@ -174,11 +176,44 @@ describe('Solution', () => {
               }
             ]
           }
-        ]
+        ],
+        enums: []
       }, solution));
 
       expect(schemas.length).toEqual(2);
       expect(solution.schemas.length).toEqual(1);
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns SolutionSpec', () => {
+      const solution: Solution = Solution.create({
+        kind: 'Solution',
+        name: 'jadoo',
+        schemas: [
+          {
+            kind: 'Schema',
+            name: 'finance',
+            entities: [],
+            enums: []
+          }
+        ]
+      });
+
+      const solutionSpec: SolutionSpec = solution.toJSON();
+
+      expect(solutionSpec).toEqual({
+        kind: 'Solution',
+        name: 'jadoo',
+        schemas: [
+          {
+            kind: 'Schema',
+            name: 'finance',
+            entities: [],
+            enums: []
+          }
+        ]
+      });
     });
   });
 });

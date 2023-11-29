@@ -4,4 +4,22 @@ metadata:
   name: login
 spec:
   schema:
-    ref: account
+    ref:
+      - account
+      - jadoo
+  attributes:
+    - name: id
+      type: UUID
+      isPrimary: true
+      sequence: UUID
+    - name: provider-name
+      type: Enum
+      enum:
+        kind: EnumReference
+        name:
+          - provider-name
+          - account
+          - jadoo
+    - name: provider-id
+      type: String
+      length: 256

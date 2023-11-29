@@ -31,6 +31,14 @@ export class Entity {
     ];
   }
 
+  toJSON(): EntitySpec {
+    return {
+      kind: 'Entity',
+      name: this.name.singular.paramCase,
+      attributes: this.attributes.map((attribute: Attribute) => attribute.toJSON())
+    };
+  }
+
   static create(json: EntitySpec, schema: Schema): Entity {
     const name: string = json.name;
     const attributes: AttributeSpec[] = json.attributes;

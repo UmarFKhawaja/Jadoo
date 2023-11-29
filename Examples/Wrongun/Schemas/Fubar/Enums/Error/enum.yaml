@@ -1,0 +1,12 @@
+kind: Enum
+apiVersion: v1
+metadata:
+  name: error
+spec:
+  schema:
+    ref:
+      - fubar
+      - wrongun
+  values:
+    - name: not-implemented-exception
+      type: Exception

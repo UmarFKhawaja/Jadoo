@@ -4,4 +4,32 @@ metadata:
   name: access
 spec:
   schema:
-    ref: account
+    ref:
+      - account
+      - jadoo
+  attributes:
+    - name: id
+      type: UUID
+      isPrimary: true
+      sequence: UUID
+    - name: subject-id
+      type: Int64
+    - name: subject-type
+      type: String
+      length: 128
+    - name: object-id
+      type: Int64
+    - name: object-type
+      type: String
+      length: 128
+    - name: type
+      type: Enum
+      enum:
+        kind: EnumReference
+        name:
+          - access-type
+          - account
+          - jadoo
+    - name: checksum
+      type: UUID
+      sequence: UUID

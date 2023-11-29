@@ -1,17 +1,20 @@
 import { Identifier } from '@jadoo/core-library';
-import { Int64Attribute, IntegerSequence } from '..';
+import { Int64Attribute, Int64AttributeSpec, IntegerSequence } from '..';
 import { Entity } from '../../Entity';
 import { Schema } from '../../Schema';
 import { Solution } from '../../Solution';
 
 const solution: Solution = Solution.create({
   kind: 'Solution',
-  name: 'Jadoo'
+  name: 'Jadoo',
+  schemas: []
 });
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
-  name: 'finance'
+  name: 'finance',
+  entities: [],
+  enums: []
 }, solution);
 
 const entity: Entity = Entity.create({
@@ -71,6 +74,27 @@ describe('Int64Attribute', () => {
           name: ''
         }, entity);
       }).toThrowError('invalid attribute');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns Int64AttributeSpec', () => {
+      const int64Attribute: Int64Attribute = Int64Attribute.create({
+        kind: 'Int64Attribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true
+      }, entity);
+
+      const int64AttributeSpec: Int64AttributeSpec = int64Attribute.toJSON();
+
+      expect(int64AttributeSpec).toEqual({
+        kind: 'Int64Attribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true,
+        sequence: 'NONE'
+      });
     });
   });
 });

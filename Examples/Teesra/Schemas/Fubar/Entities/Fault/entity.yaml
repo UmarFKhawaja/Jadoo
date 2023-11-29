@@ -1,0 +1,15 @@
+kind: Entity
+apiVersion: v1
+metadata:
+  name: fault
+spec:
+  schema:
+    ref:
+      - fubar
+      - teesra
+  attributes:
+    - name: id
+      type: UUID
+      isPrimary: true
+    - name: erroneous-type
+      type: Error

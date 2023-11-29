@@ -4,4 +4,12 @@ metadata:
   name: role
 spec:
   schema:
-    ref: account
+    ref:
+      - account
+      - jadoo
+  attributes:
+    - name: id
+      type: UUID
+      isPrimary: true
+    - name: flags
+      type: Int8

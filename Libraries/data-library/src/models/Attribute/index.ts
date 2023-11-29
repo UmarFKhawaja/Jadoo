@@ -33,8 +33,8 @@ export type AttributeKind =
   | 'TimestampAttribute'
   | 'JSONAttribute'
   | 'UUIDAttribute'
-  | 'EnumAttribute'
-  | 'EntityAttribute';
+  | 'EntityAttribute'
+  | 'EnumAttribute';
 
 export enum IntegerSequence {
   NONE = 'NONE',
@@ -50,6 +50,16 @@ export enum UUIDSequence {
   UUID = 'UUID',
 
   ROW_ID = 'ROW_ID'
+}
+
+export enum EntityArity {
+  ONE_TO_ONE = 'ONE_TO_ONE',
+
+  ONE_TO_MANY = 'ONE_TO_MANY',
+
+  MANY_TO_ONE = 'MANY_TO_ONE',
+
+  MANY_TO_MANY = 'MANY_TO_MANY'
 }
 
 export type AttributeSpec =
@@ -68,8 +78,8 @@ export type AttributeSpec =
   | TimestampAttributeSpec
   | JSONAttributeSpec
   | UUIDAttributeSpec
-  | EnumAttributeSpec
-  | EntityAttributeSpec;
+  | EntityAttributeSpec
+  | EnumAttributeSpec;
 
 export interface BooleanAttributeSpec {
   kind: 'BooleanAttribute';
@@ -188,20 +198,21 @@ export interface UUIDAttributeSpec {
   sequence?: keyof typeof UUIDSequence;
 }
 
+export interface EntityAttributeSpec {
+  kind: 'EntityAttribute';
+  name: string;
+  isPrimary?: boolean;
+  isNullable?: boolean;
+  reference: EntityReferenceSpec;
+  arity: EntityArity;
+}
+
 export interface EnumAttributeSpec {
   kind: 'EnumAttribute';
   name: string;
   isPrimary?: boolean;
   isNullable?: boolean;
   enum: EnumReferenceSpec;
-}
-
-export interface EntityAttributeSpec {
-  kind: 'EntityAttribute';
-  name: string;
-  isPrimary?: boolean;
-  isNullable?: boolean;
-  entity: EntityReferenceSpec;
 }
 
 export abstract class Attribute {
@@ -232,6 +243,8 @@ export abstract class Attribute {
   get isNullable(): boolean {
     return this._isNullable;
   }
+
+  abstract toJSON(): AttributeSpec;
 
   static create(json: AttributeSpec, entity: Entity): Attribute {
     const kind: AttributeKind = json.kind;
@@ -282,11 +295,11 @@ export abstract class Attribute {
       case 'UUIDAttribute':
         return UUIDAttribute.create(json as UUIDAttributeSpec, entity);
 
-      case 'EnumAttribute':
-        return EnumAttribute.create(json as EnumAttributeSpec, entity);
-
       case 'EntityAttribute':
         return EntityAttribute.create(json as EntityAttributeSpec, entity);
+
+      case 'EnumAttribute':
+        return EnumAttribute.create(json as EnumAttributeSpec, entity);
 
       default:
         throw new Error('unsupported attribute kind');
@@ -302,6 +315,15 @@ export class BooleanAttribute extends Attribute {
     isNullable: boolean
   ) {
     super(name, isPrimary, isNullable);
+  }
+
+  override toJSON(): BooleanAttributeSpec {
+    return {
+      kind: 'BooleanAttribute',
+      name: this.name.paramCase,
+      isPrimary: this.isPrimary,
+      isNullable: this.isNullable
+    };
   }
 
   static override create(json: BooleanAttributeSpec, entity: Entity): BooleanAttribute {
@@ -358,6 +380,16 @@ export class Int8Attribute extends IntegerAttribute {
     return 8;
   }
 
+  override toJSON(): Int8AttributeSpec {
+    return {
+      kind: 'Int8Attribute',
+      name: this.name.paramCase,
+      isPrimary: this.isPrimary,
+      isNullable: this.isNullable,
+      sequence: this.sequence
+    };
+  }
+
   static override create(json: Int8AttributeSpec, entity: Entity): Int8Attribute {
     const name: string = json.name;
     const isPrimary: boolean = json.isPrimary || false;
@@ -391,6 +423,16 @@ export class Int16Attribute extends IntegerAttribute {
 
   override get width(): number {
     return 16;
+  }
+
+  override toJSON(): Int16AttributeSpec {
+    return {
+      kind: 'Int16Attribute',
+      name: this.name.paramCase,
+      isPrimary: this.isPrimary,
+      isNullable: this.isNullable,
+      sequence: this.sequence
+    };
   }
 
   static override create(json: Int16AttributeSpec, entity: Entity): Int16Attribute {
@@ -428,6 +470,16 @@ export class Int32Attribute extends IntegerAttribute {
     return 32;
   }
 
+  override toJSON(): Int32AttributeSpec {
+    return {
+      kind: 'Int32Attribute',
+      name: this.name.paramCase,
+      isPrimary: this.isPrimary,
+      isNullable: this.isNullable,
+      sequence: this.sequence
+    };
+  }
+
   static override create(json: Int32AttributeSpec, entity: Entity): Int32Attribute {
     const name: string = json.name;
     const isPrimary: boolean = json.isPrimary || false;
@@ -461,6 +513,16 @@ export class Int64Attribute extends IntegerAttribute {
 
   override get width(): number {
     return 64;
+  }
+
+  override toJSON(): Int64AttributeSpec {
+    return {
+      kind: 'Int64Attribute',
+      name: this.name.paramCase,
+      isPrimary: this.isPrimary,
+      isNullable: this.isNullable,
+      sequence: this.sequence
+    };
   }
 
   static override create(json: Int64AttributeSpec, entity: Entity): Int64Attribute {
@@ -497,6 +559,15 @@ export class SingleAttribute extends Attribute {
     return 32;
   }
 
+  override toJSON(): SingleAttributeSpec {
+    return {
+      kind: 'SingleAttribute',
+      name: this.name.paramCase,
+      isPrimary: this.isPrimary,
+      isNullable: this.isNullable
+    };
+  }
+
   static override create(json: SingleAttributeSpec, entity: Entity): SingleAttribute {
     const name: string = json.name;
     const isPrimary: boolean = json.isPrimary || false;
@@ -527,6 +598,15 @@ export class DoubleAttribute extends Attribute {
 
   get width(): number {
     return 64;
+  }
+
+  override toJSON(): DoubleAttributeSpec {
+    return {
+      kind: 'DoubleAttribute',
+      name: this.name.paramCase,
+      isPrimary: this.isPrimary,
+      isNullable: this.isNullable
+    };
   }
 
   static override create(json: DoubleAttributeSpec, entity: Entity): DoubleAttribute {
@@ -572,6 +652,17 @@ export class DecimalAttribute extends Attribute {
 
   get scale(): number {
     return this._scale;
+  }
+
+  override toJSON(): DecimalAttributeSpec {
+    return {
+      kind: 'DecimalAttribute',
+      name: this.name.paramCase,
+      isPrimary: this.isPrimary,
+      isNullable: this.isNullable,
+      precision: this.precision,
+      scale: this.scale
+    };
   }
 
   static override create(json: DecimalAttributeSpec, entity: Entity): DecimalAttribute {
@@ -623,6 +714,16 @@ export class StringAttribute extends Attribute {
     return this._length;
   }
 
+  override toJSON(): StringAttributeSpec {
+    return {
+      kind: 'StringAttribute',
+      name: this.name.paramCase,
+      isPrimary: this.isPrimary,
+      isNullable: this.isNullable,
+      length: this.length
+    };
+  }
+
   static override create(json: StringAttributeSpec, entity: Entity): StringAttribute {
     const name: string = json.name;
     const isPrimary: boolean = json.isPrimary || false;
@@ -666,6 +767,16 @@ export class DateAttribute extends Attribute {
     return this._format;
   }
 
+  override toJSON(): DateAttributeSpec {
+    return {
+      kind: 'DateAttribute',
+      name: this.name.paramCase,
+      isPrimary: this.isPrimary,
+      isNullable: this.isNullable,
+      format: this.format
+    };
+  }
+
   static override create(json: DateAttributeSpec, entity: Entity): DateAttribute {
     const name: string = json.name;
     const isPrimary: boolean = json.isPrimary || false;
@@ -703,6 +814,16 @@ export class TimeAttribute extends Attribute {
 
   get format(): string {
     return this._format;
+  }
+
+  override toJSON(): TimeAttributeSpec {
+    return {
+      kind: 'TimeAttribute',
+      name: this.name.paramCase,
+      isPrimary: this.isPrimary,
+      isNullable: this.isNullable,
+      format: this.format
+    };
   }
 
   static override create(json: TimeAttributeSpec, entity: Entity): TimeAttribute {
@@ -744,6 +865,16 @@ export class DateTimeAttribute extends Attribute {
     return this._format;
   }
 
+  override toJSON(): DateTimeAttributeSpec {
+    return {
+      kind: 'DateTimeAttribute',
+      name: this.name.paramCase,
+      isPrimary: this.isPrimary,
+      isNullable: this.isNullable,
+      format: this.format
+    };
+  }
+
   static override create(json: DateTimeAttributeSpec, entity: Entity): DateTimeAttribute {
     const name: string = json.name;
     const isPrimary: boolean = json.isPrimary || false;
@@ -783,6 +914,16 @@ export class TimestampAttribute extends Attribute {
     return this._format;
   }
 
+  override toJSON(): TimestampAttributeSpec {
+    return {
+      kind: 'TimestampAttribute',
+      name: this.name.paramCase,
+      isPrimary: this.isPrimary,
+      isNullable: this.isNullable,
+      format: this.format
+    };
+  }
+
   static override create(json: TimestampAttributeSpec, entity: Entity): TimestampAttribute {
     const name: string = json.name;
     const isPrimary: boolean = json.isPrimary || false;
@@ -811,6 +952,15 @@ export class JSONAttribute extends Attribute {
     isNullable: boolean
   ) {
     super(name, isPrimary, isNullable);
+  }
+
+  override toJSON(): JSONAttributeSpec {
+    return {
+      kind: 'JSONAttribute',
+      name: this.name.paramCase,
+      isPrimary: this.isPrimary,
+      isNullable: this.isNullable
+    };
   }
 
   static override create(json: JSONAttributeSpec, entity: Entity): JSONAttribute {
@@ -850,6 +1000,16 @@ export class UUIDAttribute extends Attribute {
     return this._sequence;
   }
 
+  override toJSON(): UUIDAttributeSpec {
+    return {
+      kind: 'UUIDAttribute',
+      name: this.name.paramCase,
+      isPrimary: this.isPrimary,
+      isNullable: this.isNullable,
+      sequence: this.sequence
+    };
+  }
+
   static override create(json: UUIDAttributeSpec, entity: Entity): UUIDAttribute {
     const name: string = json.name;
     const isPrimary: boolean = json.isPrimary || false;
@@ -871,6 +1031,66 @@ export class UUIDAttribute extends Attribute {
   }
 }
 
+export class EntityAttribute extends Attribute {
+  private readonly _reference: EntityReference;
+
+  private readonly _arity: EntityArity;
+
+  protected constructor(
+    name: Identifier,
+    isPrimary: boolean,
+    isNullable: boolean,
+    reference: EntityReference,
+    arity: EntityArity
+  ) {
+    super(name, isPrimary, isNullable);
+
+    this._reference = reference;
+    this._arity = arity;
+  }
+
+  get reference(): EntityReference {
+    return this._reference;
+  }
+
+  get arity(): EntityArity {
+    return this._arity;
+  }
+
+  override toJSON(): EntityAttributeSpec {
+    return {
+      kind: 'EntityAttribute',
+      name: this.name.paramCase,
+      isPrimary: this.isPrimary,
+      isNullable: this.isNullable,
+      reference: this.reference.toJSON(),
+      arity: this.arity
+    };
+  }
+
+  static override create(json: EntityAttributeSpec, entity: Entity): EntityAttribute {
+    const name: string = json.name;
+    const isPrimary: boolean = json.isPrimary || false;
+    const isNullable: boolean = json.isNullable || false;
+    const reference: EntityReferenceSpec = json.reference;
+    const arity: EntityArity = json.arity;
+
+    if (!name) {
+      throw new Error('invalid attribute');
+    }
+
+    const entityAttribute: EntityAttribute = new EntityAttribute(
+      Identifier.create(name),
+      isPrimary,
+      isNullable,
+      EntityReference.create(reference),
+      arity
+    );
+
+    return entityAttribute;
+  }
+}
+
 export class EnumAttribute extends Attribute {
   private readonly _enumReference: EnumReference;
 
@@ -887,6 +1107,16 @@ export class EnumAttribute extends Attribute {
 
   get enumReference(): EnumReference {
     return this._enumReference;
+  }
+
+  override toJSON(): EnumAttributeSpec {
+    return {
+      kind: 'EnumAttribute',
+      name: this.name.paramCase,
+      isPrimary: this.isPrimary,
+      isNullable: this.isNullable,
+      enum: this.enumReference.toJSON()
+    };
   }
 
   static override create(json: EnumAttributeSpec, entity: Entity): EnumAttribute {
@@ -907,44 +1137,5 @@ export class EnumAttribute extends Attribute {
     );
 
     return enumAttribute;
-  }
-}
-
-export class EntityAttribute extends Attribute {
-  private readonly _entityReference: EntityReference;
-
-  protected constructor(
-    name: Identifier,
-    isPrimary: boolean,
-    isNullable: boolean,
-    entityReference: EntityReference
-  ) {
-    super(name, isPrimary, isNullable);
-
-    this._entityReference = entityReference;
-  }
-
-  get entityReference(): EntityReference {
-    return this._entityReference;
-  }
-
-  static override create(json: EntityAttributeSpec, entity: Entity): EntityAttribute {
-    const name: string = json.name;
-    const isPrimary: boolean = json.isPrimary || false;
-    const isNullable: boolean = json.isNullable || false;
-    const entityReference: EntityReferenceSpec = json.entity;
-
-    if (!name) {
-      throw new Error('invalid attribute');
-    }
-
-    const entityAttribute: EntityAttribute = new EntityAttribute(
-      Identifier.create(name),
-      isPrimary,
-      isNullable,
-      EntityReference.create(entityReference)
-    );
-
-    return entityAttribute;
   }
 }

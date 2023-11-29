@@ -21,7 +21,8 @@
     "inversify": "^6.0.1",
     "lodash": "^4.17.21",
     "pluralize": "^8.0.0",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "yaml": "^2.3.2"
   },
   "devDependencies": {
     "@types/jest": "^29.5.5",
@@ -34,7 +35,7 @@
   },
   "jest": {
     "transform": {
-      "^.+\\.[tj]sx?$": [
+      "^.+\\.tsx?$": [
         "ts-jest",
         {
           "preset": "ts-jest",

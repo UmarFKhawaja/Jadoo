@@ -1,17 +1,20 @@
 import { Identifier } from '@jadoo/core-library';
-import { UUIDAttribute, UUIDSequence } from '..';
+import { UUIDAttribute, UUIDAttributeSpec, UUIDSequence } from '..';
 import { Entity } from '../../Entity';
 import { Schema } from '../../Schema';
 import { Solution } from '../../Solution';
 
 const solution: Solution = Solution.create({
   kind: 'Solution',
-  name: 'Jadoo'
+  name: 'Jadoo',
+  schemas: []
 });
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
-  name: 'finance'
+  name: 'finance',
+  entities: [],
+  enums: []
 }, solution);
 
 const entity: Entity = Entity.create({
@@ -52,6 +55,27 @@ describe('UUIDAttribute', () => {
           name: ''
         }, entity);
       }).toThrowError('invalid attribute');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns UUIDAttributeSpec', () => {
+      const uuidAttribute: UUIDAttribute = UUIDAttribute.create({
+        kind: 'UUIDAttribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true
+      }, entity);
+
+      const uuidAttributeSpec: UUIDAttributeSpec = uuidAttribute.toJSON();
+
+      expect(uuidAttributeSpec).toEqual({
+        kind: 'UUIDAttribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true,
+        sequence: 'NONE'
+      });
     });
   });
 });

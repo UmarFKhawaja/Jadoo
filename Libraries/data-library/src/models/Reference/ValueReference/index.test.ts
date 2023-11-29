@@ -1,5 +1,5 @@
 import { Identifier, Title } from '@jadoo/core-library';
-import { EnumReference, SchemaReference, ValueReference } from '..';
+import { EnumReference, SchemaReference, ValueReference, ValueReferenceSpec } from '..';
 
 describe('ValueReference', () => {
   describe('create', () => {
@@ -58,5 +58,21 @@ describe('ValueReference', () => {
         name: ['debit', 'account-type', 'finance', '']
       });
     }).toThrowError('invalid value reference');
+  });
+
+  describe('toJSON', () => {
+    it('returns ValueReferenceSpec', () => {
+      const valueReference: ValueReference = ValueReference.create({
+        kind: 'ValueReference',
+        name: ['debit', 'account-type', 'finance', 'jadoo']
+      });
+
+      const valueReferenceSpec: ValueReferenceSpec = valueReference.toJSON();
+
+      expect(valueReferenceSpec).toEqual({
+        kind: 'ValueReference',
+        name: ['debit', 'account-type', 'finance', 'jadoo']
+      });
+    });
   });
 });

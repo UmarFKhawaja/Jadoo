@@ -4,4 +4,13 @@ metadata:
   name: provider-name
 spec:
   schema:
-    ref: account
+    ref:
+      - account
+      - jadoo
+  values:
+    - name: facebook
+      type: String
+      value: FACEBOOK
+    - name: google
+      type: String
+      value: GOOGLE

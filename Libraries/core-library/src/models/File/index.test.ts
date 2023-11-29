@@ -51,4 +51,42 @@ describe('File', () => {
       expect(file.mode).toEqual(FileMode.BINARY);
     });
   });
+
+  describe('content', () => {
+    it('gets content in BINARY mode', () => {
+      const file: File = File.create('../../Examples/README.md', {
+        mode: FileMode.BINARY
+      });
+
+      const content: Buffer = file.content;
+
+      expect(content).toBeInstanceOf(Buffer);
+      expect(content.length).toEqual(7);
+      expect(content).toEqual(Buffer.from('# Jadoo'));
+    });
+
+    it('gets content in TEXT mode', () => {
+      const file: File = File.create('../../Examples/README.md', {
+        mode: FileMode.TEXT
+      });
+
+      const content: Buffer = file.content;
+
+      expect(content).toBeInstanceOf(Buffer);
+      expect(content.length).toEqual(7);
+      expect(content).toEqual(Buffer.from('# Jadoo'));
+    });
+
+    it('does not get content in UNKNOWN mode', () => {
+      expect(() => {
+        const file: File = File.create('../../Examples/README.md', {
+          mode: 'UNKNOWN' as unknown as FileMode
+        });
+
+        const content: Buffer = file.content;
+
+        expect(content).toBeInstanceOf(Buffer);
+      }).toThrowError('unsupported mode UNKNOWN');
+    });
+  });
 });

@@ -1,5 +1,5 @@
 import { Identifier, Title } from '@jadoo/core-library';
-import { EnumAttribute } from '..';
+import { EnumAttribute, EnumAttributeSpec } from '..';
 import { Entity } from '../../Entity';
 import { EnumReference } from '../../Reference';
 import { Schema } from '../../Schema';
@@ -7,12 +7,15 @@ import { Solution } from '../../Solution';
 
 const solution: Solution = Solution.create({
   kind: 'Solution',
-  name: 'Jadoo'
+  name: 'Jadoo',
+  schemas: []
 });
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
-  name: 'finance'
+  name: 'finance',
+  entities: [],
+  enums: []
 }, solution);
 
 const entity: Entity = Entity.create({
@@ -27,7 +30,7 @@ const entity: Entity = Entity.create({
     }
   ]
 }, schema);
-
+schema
 describe('EnumAttribute', () => {
   describe('create', () => {
     it('creates a JSON attribute', () => {
@@ -66,6 +69,34 @@ describe('EnumAttribute', () => {
           }
         }, entity);
       }).toThrowError('invalid attribute');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns EnumAttributeSpec', () => {
+      const enumAttribute: EnumAttribute = EnumAttribute.create({
+        kind: 'EnumAttribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true,
+        enum: {
+          kind: 'EnumReference',
+          name: ['account-type', 'finance', 'jadoo']
+        }
+      }, entity);
+
+      const enumAttributeSpec: EnumAttributeSpec = enumAttribute.toJSON();
+
+      expect(enumAttributeSpec).toEqual({
+        kind: 'EnumAttribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true,
+        enum: {
+          kind: 'EnumReference',
+          name: ['account-type', 'finance', 'jadoo']
+        }
+      });
     });
   });
 });

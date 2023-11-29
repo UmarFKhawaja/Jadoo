@@ -31,6 +31,14 @@ export class Enum {
     ];
   }
 
+  toJSON(): EnumSpec {
+    return {
+      kind: 'Enum',
+      name: this.name.singular.paramCase,
+      values: this.values.map((value: Value) => value.toJSON())
+    };
+  }
+
   static create(json: EnumSpec, schema: Schema): Enum {
     const name: string = json.name;
     const values: ValueSpec[] = json.values;

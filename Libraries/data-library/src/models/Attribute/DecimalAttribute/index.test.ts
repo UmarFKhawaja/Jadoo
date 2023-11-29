@@ -1,5 +1,5 @@
 import { Identifier } from '@jadoo/core-library';
-import { DecimalAttribute } from '..';
+import { DecimalAttribute, DecimalAttributeSpec } from '..';
 import {
   DEFAULT_DECIMAL_PRECISION,
   DEFAULT_DECIMAL_SCALE,
@@ -14,12 +14,15 @@ import { Solution } from '../../Solution';
 
 const solution: Solution = Solution.create({
   kind: 'Solution',
-  name: 'Jadoo'
+  name: 'Jadoo',
+  schemas: []
 });
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
-  name: 'finance'
+  name: 'finance',
+  entities: [],
+  enums: []
 }, solution);
 
 const entity: Entity = Entity.create({
@@ -120,6 +123,28 @@ describe('DecimalAttribute', () => {
           scale: MAX_DECIMAL_SCALE + 10
         }, entity);
       }).toThrowError('invalid attribute');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns DecimalAttributeSpec', () => {
+      const decimalAttribute: DecimalAttribute = DecimalAttribute.create({
+        kind: 'DecimalAttribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true
+      }, entity);
+
+      const decimalAttributeSpec: DecimalAttributeSpec = decimalAttribute.toJSON();
+
+      expect(decimalAttributeSpec).toEqual({
+        kind: 'DecimalAttribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true,
+        precision: DEFAULT_DECIMAL_PRECISION,
+        scale: DEFAULT_DECIMAL_SCALE
+      });
     });
   });
 });

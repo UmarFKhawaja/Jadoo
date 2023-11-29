@@ -1,17 +1,20 @@
 import { Identifier } from '@jadoo/core-library';
-import { DoubleAttribute } from '..';
+import { DoubleAttribute, DoubleAttributeSpec } from '..';
 import { Entity } from '../../Entity';
 import { Schema } from '../../Schema';
 import { Solution } from '../../Solution';
 
 const solution: Solution = Solution.create({
   kind: 'Solution',
-  name: 'Jadoo'
+  name: 'Jadoo',
+  schemas: []
 });
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
-  name: 'finance'
+  name: 'finance',
+  entities: [],
+  enums: []
 }, solution);
 
 const entity: Entity = Entity.create({
@@ -52,6 +55,26 @@ describe('DoubleAttribute', () => {
           name: ''
         }, entity);
       }).toThrowError('invalid attribute');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns DoubleAttributeSpec', () => {
+      const doubleAttribute: DoubleAttribute = DoubleAttribute.create({
+        kind: 'DoubleAttribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true
+      }, entity);
+
+      const doubleAttributeSpec: DoubleAttributeSpec = doubleAttribute.toJSON();
+
+      expect(doubleAttributeSpec).toEqual({
+        kind: 'DoubleAttribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true
+      });
     });
   });
 });

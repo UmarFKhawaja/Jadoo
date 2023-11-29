@@ -6,8 +6,8 @@ import { Solution } from '../Solution';
 export interface SchemaSpec {
   kind: 'Schema';
   name: string;
-  entities?: EntitySpec[];
-  enums?: EnumSpec[];
+  entities: EntitySpec[];
+  enums: EnumSpec[];
 }
 
 export class Schema {
@@ -43,10 +43,19 @@ export class Schema {
     ];
   }
 
+  toJSON(): SchemaSpec {
+    return {
+      kind: 'Schema',
+      name: this.name.paramCase,
+      entities: this.entities.map((entity: Entity) => entity.toJSON()),
+      enums: this.enums.map(($enum: Enum) => $enum.toJSON())
+    }
+  }
+
   static create(json: SchemaSpec, solution: Solution): Schema {
     const name: string = json.name;
-    const entities: EntitySpec[] = json.entities || [];
-    const enums: EnumSpec[] = json.enums || [];
+    const entities: EntitySpec[] = json.entities;
+    const enums: EnumSpec[] = json.enums;
 
     if (!name) {
       throw new Error('invalid schema');

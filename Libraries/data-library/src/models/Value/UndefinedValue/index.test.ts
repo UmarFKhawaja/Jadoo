@@ -1,16 +1,19 @@
-import { UndefinedValue } from '..';
+import { UndefinedValue, UndefinedValueSpec } from '..';
 import { Schema } from '../../Schema';
 import { Enum } from '../../Enum';
 import { Solution } from '../../Solution';
 
 const solution: Solution = Solution.create({
   kind: 'Solution',
-  name: 'Jadoo'
+  name: 'Jadoo',
+  schemas: []
 });
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
-  name: 'finance'
+  name: 'finance',
+  entities: [],
+  enums: []
 }, solution);
 
 const $enum: Enum = Enum.create({
@@ -46,6 +49,22 @@ describe('UndefinedValue', () => {
           name: ''
         }, $enum);
       }).toThrowError('invalid value');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns UndefinedValueSpec', () => {
+      const undefinedValue: UndefinedValue = UndefinedValue.create({
+        kind: 'UndefinedValue',
+        name: 'start'
+      }, $enum);
+
+      const undefinedValueSpec: UndefinedValueSpec = undefinedValue.toJSON();
+
+      expect(undefinedValueSpec).toEqual({
+        kind: 'UndefinedValue',
+        name: 'start'
+      });
     });
   });
 });

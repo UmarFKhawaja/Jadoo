@@ -4,4 +4,33 @@ metadata:
   name: profile
 spec:
   schema:
-    ref: account
+    ref:
+      - account
+      - jadoo
+  attributes:
+    - name: id
+      type: UUID
+      isPrimary: true
+      sequence: UUID
+    - name: token
+      type: Int32
+    - name: birth-date
+      type: Date
+    - name: longitude
+      type: Single
+    - name: latitude
+      type: Single
+    - name: altitude
+      type: Double
+    - name: balance
+      type: Decimal
+      precision: 12
+      scale: 4
+    - name: available-from
+      type: Time
+    - name: available-till
+      type: Time
+    - name: last-seen-at
+      type: DateTime
+    - name: details
+      type: JSON

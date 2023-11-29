@@ -1,4 +1,3 @@
-import { relative as makeRelativePath } from 'path';
 import { globSync } from 'glob';
 import { DirectoryMode, DirectoryOptions, DirectoryResults } from '../../types';
 import { File } from '../File';
@@ -33,61 +32,55 @@ export class Directory extends Path {
   }
 
   get children(): Path[] {
-    const [directories, files] = this.getDirectoriesAndFiles();
-    const children: Path[] = this.getPaths(directories, files);
+    let directories: string[] = [];
+    let files: string[] = [];
 
-    return children;
-  }
-
-  private getDirectoriesAndFiles(): [string[], string[]] {
     switch (this.mode) {
       case DirectoryMode.DEFAULT: {
-        const directories: string[] = globSync(`${this.name}/*/`, {
+        directories = globSync(`${this.name}/*/`, {
           dot: true
         });
-        const files: string[] = globSync(`${this.name}/*`, {
+        files = globSync(`${this.name}/*`, {
           dot: true
         })
           .filter((file: string) => !directories.includes(file));
 
-        return [directories, files];
+        break;
       }
 
       case DirectoryMode.RECURSIVE: {
-        const directories: string[] = globSync(`${this.name}/**/`, {
+        directories = globSync(`${this.name}/**/`, {
           dot: true
         });
-        const files: string[] = globSync(`${this.name}/**`, {
+        files = globSync(`${this.name}/**`, {
           dot: true
         })
           .filter((file: string) => !directories.includes(file));
 
-        return [directories, files];
+        break;
       }
 
       default:
         throw new Error(`unsupported mode ${this.mode}`);
     }
-  }
 
-  private getPaths(directories: string[], files: string[]): Path[] {
     switch (this.results) {
       case DirectoryResults.FILES_ONLY:
-        return files.map((file: string) => File.create(makeRelativePath(this.name, file)));
+        return files.map((file: string) => File.create(file));
 
       case DirectoryResults.DIRECTORIES_ONLY:
-        return directories.map((directory: string) => Directory.create(makeRelativePath(this.name, directory), {
+        return directories.map((directory: string) => Directory.create(directory, {
           mode: this.mode,
           results: this.results
         }));
 
       case DirectoryResults.EVERYTHING:
         return [
-          ...directories.map((directory: string) => Directory.create(makeRelativePath(this.name, directory), {
+          ...directories.map((directory: string) => Directory.create(directory, {
             mode: this.mode,
             results: this.results
           })),
-          ...files.map((file: string) => File.create(makeRelativePath(this.name, file)))
+          ...files.map((file: string) => File.create(file))
         ];
 
       default:

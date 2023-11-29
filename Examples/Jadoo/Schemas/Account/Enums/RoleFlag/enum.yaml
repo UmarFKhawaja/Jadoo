@@ -1,0 +1,14 @@
+kind: Enum
+apiVersion: v1
+metadata:
+  name: role-flag
+spec:
+  schema:
+    ref:
+      - account
+      - jadoo
+  values:
+    - name: deny
+      type: Undefined
+    - name: allow
+      type: Undefined

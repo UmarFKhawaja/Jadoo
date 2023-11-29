@@ -1,6 +1,6 @@
 import { Identifier } from '@jadoo/core-library';
 import { Plugin } from '@jadoo/plugin-library';
-import { DeserializeCoreModelsPluginSpec } from '../../types';
+import { MainPluginSpec } from '../../types';
 import { create } from '.';
 
 describe('create', () => {
@@ -19,13 +19,13 @@ describe('create', () => {
 
   it('does not create the plugin when spec is undefined', () => {
     expect(() => {
-      create(undefined as unknown as DeserializeCoreModelsPluginSpec);
+      create(undefined as unknown as MainPluginSpec);
     }).toThrowError('invalid options');
   });
 
   it('does not create the plugin when options in spec is undefined', () => {
     expect(() => {
-      create({} as unknown as DeserializeCoreModelsPluginSpec);
+      create({} as unknown as MainPluginSpec);
     }).toThrowError('invalid options');
   });
 
@@ -34,7 +34,7 @@ describe('create', () => {
       create({
         options: {
         }
-      } as DeserializeCoreModelsPluginSpec);
+      } as MainPluginSpec);
     }).toThrowError('invalid options');
   });
 
@@ -44,7 +44,7 @@ describe('create', () => {
         options: {
           sourceDir: null as unknown as string
         }
-      } as DeserializeCoreModelsPluginSpec);
+      } as MainPluginSpec);
     }).toThrowError('invalid options');
   });
 });

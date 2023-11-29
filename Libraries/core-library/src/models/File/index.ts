@@ -1,3 +1,4 @@
+import { readFileSync } from 'fs';
 import { guessFileMode } from '../../methods';
 import { FileMode, FileOptions } from '../../types';
 import { Path } from '../Path';
@@ -17,6 +18,21 @@ export class File extends Path {
 
   set mode(mode: FileMode) {
     this._mode = mode;
+  }
+
+  get content(): Buffer {
+    switch (this.mode) {
+      case FileMode.BINARY:
+        return readFileSync(this.name);
+
+      case FileMode.TEXT:
+        return Buffer.from(readFileSync(this.name, {
+          encoding: 'utf-8'
+        }));
+
+      default:
+        throw new Error(`unsupported mode ${this.mode}`);
+    }
   }
 
   static override create(name: string, options?: FileOptions): File {

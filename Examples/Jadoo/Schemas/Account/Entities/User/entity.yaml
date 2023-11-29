@@ -4,4 +4,36 @@ metadata:
   name: user
 spec:
   schema:
-    ref: account
+    ref:
+      - account
+      - jadoo
+  attributes:
+    - name: id
+      type: UUID
+      isPrimary: true
+    - name: is-active
+      type: Boolean
+    - name: verified-at
+      type: Timestamp
+      isNullable: true
+    - name: confirmed-at
+      type: Timestamp
+      isNullable: true
+    - name: login
+      type: Entity
+      reference:
+        kind: EntityReference
+        name:
+          - login
+          - account
+          - jadoo
+      arity: ONE_TO_MANY
+    - name: profile
+      type: Entity
+      reference:
+        kind: EntityReference
+        name:
+          - profile
+          - account
+          - jadoo
+      arity: ONE_TO_MANY

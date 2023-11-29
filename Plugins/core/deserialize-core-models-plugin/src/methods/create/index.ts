@@ -1,21 +1,18 @@
 import { isNull, isUndefined } from 'lodash';
 import { Identifier } from '@jadoo/core-library';
 import { Plugin } from '@jadoo/plugin-library';
-import {
-  DeserializeCoreModelsOptions,
-  DeserializeCoreModelsPlugin,
-  DeserializeCoreModelsPluginSpec
-} from '../../types';
+import { MainOptions, MainPlugin } from '../../models';
+import { MainPluginSpec } from '../../types';
 
-export function create(json: DeserializeCoreModelsPluginSpec): Plugin {
+export function create(json: MainPluginSpec): Plugin {
   if (!json || !json.options || isUndefined(json.options.sourceDir) || isNull(json.options.sourceDir)) {
     throw new Error('invalid options');
   }
 
-  const deserializeCoreModelsPlugin: DeserializeCoreModelsPlugin = new DeserializeCoreModelsPlugin(
+  const mainPlugin: MainPlugin = new MainPlugin(
     Identifier.create(json.name),
-    new DeserializeCoreModelsOptions(json.options.sourceDir)
+    new MainOptions(json.options.sourceDir)
   );
 
-  return deserializeCoreModelsPlugin;
+  return mainPlugin;
 }

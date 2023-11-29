@@ -4,4 +4,10 @@ metadata:
   name: attribute
 spec:
   schema:
-    ref: asset
+    ref:
+      - asset
+      - jadoo
+  attributes:
+    - name: id
+      type: UUID
+      isPrimary: true

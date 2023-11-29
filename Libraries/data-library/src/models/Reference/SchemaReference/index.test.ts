@@ -1,5 +1,5 @@
 import { Identifier } from '@jadoo/core-library';
-import { SchemaReference, SolutionReference } from '..';
+import { SchemaReference, SchemaReferenceSpec, SolutionReference } from '..';
 
 describe('SchemaReference', () => {
   describe('create', () => {
@@ -33,6 +33,22 @@ describe('SchemaReference', () => {
           name: ['finance', '']
         });
       }).toThrowError('invalid schema reference');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns SchemaReferenceSpec', () => {
+      const schemaReference: SchemaReference = SchemaReference.create({
+        kind: 'SchemaReference',
+        name: ['finance', 'jadoo']
+      });
+
+      const schemaReferenceSpec: SchemaReferenceSpec = schemaReference.toJSON();
+
+      expect(schemaReferenceSpec).toEqual({
+        kind: 'SchemaReference',
+        name: ['finance', 'jadoo']
+      });
     });
   });
 });

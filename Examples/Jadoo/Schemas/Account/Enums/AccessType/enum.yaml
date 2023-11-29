@@ -4,4 +4,25 @@ metadata:
   name: access-type
 spec:
   schema:
-    ref: account
+    ref:
+      - account
+      - jadoo
+  values:
+    - name: create
+      type: String
+      value: CREATE
+    - name: replace
+      type: String
+      value: REPLACE
+    - name: update
+      type: String
+      value: UPDATE
+    - name: delete
+      type: String
+      value: DELETE
+    - name: list
+      type: String
+      value: LIST
+    - name: read
+      type: String
+      value: READ

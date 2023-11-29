@@ -1,5 +1,5 @@
 import { Identifier } from '@jadoo/core-library';
-import { SolutionReference } from '..';
+import { SolutionReference, SolutionReferenceSpec } from '..';
 
 describe('SolutionReference', () => {
   describe('create', () => {
@@ -21,6 +21,22 @@ describe('SolutionReference', () => {
           name: ''
         });
       }).toThrowError('invalid solution reference');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns SolutionReferenceSpec', () => {
+      const solutionReference: SolutionReference = SolutionReference.create({
+        kind: 'SolutionReference',
+        name: 'jadoo'
+      });
+
+      const solutionReferenceSpec: SolutionReferenceSpec = solutionReference.toJSON();
+
+      expect(solutionReferenceSpec).toEqual({
+        kind: 'SolutionReference',
+        name: 'jadoo'
+      });
     });
   });
 });

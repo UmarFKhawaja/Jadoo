@@ -1,17 +1,20 @@
 import { Identifier } from '@jadoo/core-library';
-import { Int8Attribute, IntegerSequence } from '..';
+import { Int8Attribute, Int8AttributeSpec, IntegerSequence } from '..';
 import { Entity } from '../../Entity';
 import { Schema } from '../../Schema';
 import { Solution } from '../../Solution';
 
 const solution: Solution = Solution.create({
   kind: 'Solution',
-  name: 'Jadoo'
+  name: 'Jadoo',
+  schemas: []
 });
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
-  name: 'finance'
+  name: 'finance',
+  entities: [],
+  enums: []
 }, solution);
 
 const entity: Entity = Entity.create({
@@ -71,6 +74,27 @@ describe('Int8Attribute', () => {
           name: ''
         }, entity);
       }).toThrowError('invalid attribute');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns Int8AttributeSpec', () => {
+      const int8Attribute: Int8Attribute = Int8Attribute.create({
+        kind: 'Int8Attribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true
+      }, entity);
+
+      const int8AttributeSpec: Int8AttributeSpec = int8Attribute.toJSON();
+
+      expect(int8AttributeSpec).toEqual({
+        kind: 'Int8Attribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true,
+        sequence: 'NONE'
+      });
     });
   });
 });

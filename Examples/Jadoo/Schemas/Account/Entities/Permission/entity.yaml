@@ -4,4 +4,15 @@ metadata:
   name: permission
 spec:
   schema:
-    ref: account
+    ref:
+      - account
+      - jadoo
+  attributes:
+    - name: id
+      type: UUID
+      isPrimary: true
+    - name: flags
+      type: Int16
+    - name: name
+      type: String
+      length: 128

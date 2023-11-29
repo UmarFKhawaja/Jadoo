@@ -42,6 +42,8 @@ export abstract class Value {
     return this._name;
   }
 
+  abstract toJSON(): ValueSpec;
+
   static create(json: ValueSpec, $enum: Enum): Value {
     const kind: ValueKind = json.kind;
 
@@ -75,6 +77,14 @@ export class IntegerValue extends Value {
 
   get value(): number {
     return this._value;
+  }
+
+  override toJSON(): IntegerValueSpec {
+    return {
+      kind: 'IntegerValue',
+      name: this.name.paramCase,
+      value: this.value
+    };
   }
 
   static override create(json: IntegerValueSpec, $enum: Enum): IntegerValue {
@@ -114,6 +124,14 @@ export class StringValue extends Value {
     return this._value;
   }
 
+  override toJSON(): StringValueSpec {
+    return {
+      kind: 'StringValue',
+      name: this.name.paramCase,
+      value: this.value
+    };
+  }
+
   static override create(json: StringValueSpec, $enum: Enum): StringValue {
     const name: string = json.name;
     const value: string = json.value;
@@ -140,6 +158,13 @@ export class UndefinedValue extends Value {
     name: Identifier
   ) {
     super(name);
+  }
+
+  override toJSON(): UndefinedValueSpec {
+    return {
+      kind: 'UndefinedValue',
+      name: this.name.paramCase
+    };
   }
 
   static override create(json: UndefinedValueSpec, $enum: Enum): UndefinedValue {

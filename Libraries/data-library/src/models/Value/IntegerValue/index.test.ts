@@ -1,16 +1,19 @@
-import { IntegerValue } from '..';
+import { IntegerValue, IntegerValueSpec } from '..';
 import { Enum } from '../../Enum';
 import { Schema } from '../../Schema';
 import { Solution } from '../../Solution';
 
 const solution: Solution = Solution.create({
   kind: 'Solution',
-  name: 'Jadoo'
+  name: 'Jadoo',
+  schemas: []
 });
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
-  name: 'finance'
+  name: 'finance',
+  entities: [],
+  enums: []
 }, solution);
 
 const $enum: Enum = Enum.create({
@@ -70,6 +73,24 @@ describe('IntegerValue', () => {
           value: null as unknown as number
         }, $enum);
       }).toThrowError('invalid value');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns IntegerValueSpec', () => {
+      const integerValue: IntegerValue = IntegerValue.create({
+        kind: 'IntegerValue',
+        name: 'red',
+        value: 0x00FF0000
+      }, $enum);
+
+      const integerValueSpec: IntegerValueSpec = integerValue.toJSON();
+
+      expect(integerValueSpec).toEqual({
+        kind: 'IntegerValue',
+        name: 'red',
+        value: 16711680
+      });
     });
   });
 });

@@ -1,5 +1,5 @@
 import { Identifier } from '@jadoo/core-library';
-import { DateTimeAttribute } from '..';
+import { DateTimeAttribute, DateTimeAttributeSpec } from '..';
 import { DEFAULT_DATE_TIME_FORMAT } from '../../../constants';
 import { Entity } from '../../Entity';
 import { Schema } from '../../Schema';
@@ -7,12 +7,15 @@ import { Solution } from '../../Solution';
 
 const solution: Solution = Solution.create({
   kind: 'Solution',
-  name: 'Jadoo'
+  name: 'Jadoo',
+  schemas: []
 });
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
-  name: 'finance'
+  name: 'finance',
+  entities: [],
+  enums: []
 }, solution);
 
 const entity: Entity = Entity.create({
@@ -72,6 +75,27 @@ describe('DateTimeAttribute', () => {
           name: ''
         }, entity);
       }).toThrowError('invalid attribute');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns DateTimeAttributeSpec', () => {
+      const dateTimeAttribute: DateTimeAttribute = DateTimeAttribute.create({
+        kind: 'DateTimeAttribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true
+      }, entity);
+
+      const dateTimeAttributeSpec: DateTimeAttributeSpec = dateTimeAttribute.toJSON();
+
+      expect(dateTimeAttributeSpec).toEqual({
+        kind: 'DateTimeAttribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true,
+        format: DEFAULT_DATE_TIME_FORMAT
+      });
     });
   });
 });

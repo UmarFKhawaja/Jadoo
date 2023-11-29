@@ -1,0 +1,16 @@
+kind: Enum
+apiVersion: v1
+metadata:
+  name: permission-flag
+spec:
+  schema:
+    ref:
+      - account
+      - jadoo
+  values:
+    - name: deny
+      type: Integer
+      value: 0
+    - name: allow
+      type: Integer
+      value: 1

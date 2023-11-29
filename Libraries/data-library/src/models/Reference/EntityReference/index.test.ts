@@ -1,5 +1,5 @@
 import { Identifier, Title } from '@jadoo/core-library';
-import { EntityReference, SchemaReference } from '..';
+import { EntityReference, EntityReferenceSpec, SchemaReference } from '..';
 
 describe('EntityReference', () => {
   describe('create', () => {
@@ -45,6 +45,22 @@ describe('EntityReference', () => {
           name: ['account', 'finance', '']
         });
       }).toThrowError('invalid entity reference');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns EntityReferenceSpec', () => {
+      const entityReference: EntityReference = EntityReference.create({
+        kind: 'EntityReference',
+        name: ['account', 'finance', 'jadoo']
+      });
+
+      const entityReferenceSpec: EntityReferenceSpec = entityReference.toJSON();
+
+      expect(entityReferenceSpec).toEqual({
+        kind: 'EntityReference',
+        name: ['account', 'finance', 'jadoo']
+      });
     });
   });
 });

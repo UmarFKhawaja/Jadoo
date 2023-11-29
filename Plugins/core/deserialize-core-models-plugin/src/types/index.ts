@@ -1,4 +1,2 @@
-export * from './DeserializeCoreModelsOptions';
-export * from './DeserializeCoreModelsOptionsSpec';
-export * from './DeserializeCoreModelsPlugin';
-export * from './DeserializeCoreModelsPluginSpec';
+export * from './MainOptionsSpec';
+export * from './MainPluginSpec';

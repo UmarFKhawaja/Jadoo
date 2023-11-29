@@ -2,3 +2,6 @@ kind: Schema
 apiVersion: v1
 metadata:
   name: account
+spec:
+  solution:
+    ref: jadoo

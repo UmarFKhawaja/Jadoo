@@ -1,0 +1,7 @@
+kind: Schema
+apiVersion: v1
+metadata:
+  name: fubar
+spec:
+  solution:
+    ref: wrongun

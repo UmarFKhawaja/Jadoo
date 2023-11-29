@@ -1,14 +1,17 @@
 import { Identifier } from '@jadoo/core-library';
-import { Attribute, AttributeKind, AttributeSpec, Entity, Schema, Solution } from '..';
+import { Attribute, AttributeKind, AttributeSpec, Entity, EntityArity, Schema, Solution } from '..';
 
 const solution: Solution = Solution.create({
   kind: 'Solution',
-  name: 'Jadoo'
+  name: 'Jadoo',
+  schemas: []
 });
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
-  name: 'finance'
+  name: 'finance',
+  entities: [],
+  enums: []
 }, solution);
 
 const entity: Entity = Entity.create({
@@ -251,16 +254,17 @@ describe('Attribute', () => {
       expect(attribute.isNullable).toEqual(false);
     });
 
-    it('creates an enum attribute', () => {
+    it('creates an entity attribute', () => {
       const attribute: Attribute = Attribute.create({
-        kind: 'EnumAttribute',
+        kind: 'EntityAttribute',
         name: 'value',
         isPrimary: false,
         isNullable: false,
-        enum: {
-          kind: 'EnumReference',
-          name: ['account-type', 'finance', 'jadoo']
-        }
+        reference: {
+          kind: 'EntityReference',
+          name: ['account', 'finance', 'jadoo']
+        },
+        arity: EntityArity.ONE_TO_MANY
       }, entity);
 
       expect(attribute).toBeInstanceOf(Attribute);
@@ -270,15 +274,15 @@ describe('Attribute', () => {
       expect(attribute.isNullable).toEqual(false);
     });
 
-    it('creates an entity attribute', () => {
+    it('creates an enum attribute', () => {
       const attribute: Attribute = Attribute.create({
-        kind: 'EntityAttribute',
+        kind: 'EnumAttribute',
         name: 'value',
         isPrimary: false,
         isNullable: false,
-        entity: {
-          kind: 'EntityReference',
-          name: ['account', 'finance', 'jadoo']
+        enum: {
+          kind: 'EnumReference',
+          name: ['account-type', 'finance', 'jadoo']
         }
       }, entity);
 

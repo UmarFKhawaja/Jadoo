@@ -1,5 +1,5 @@
 import { Identifier } from '@jadoo/core-library';
-import { TimeAttribute } from '..';
+import { TimeAttribute, TimeAttributeSpec } from '..';
 import { DEFAULT_TIME_FORMAT } from '../../../constants';
 import { Entity } from '../../Entity';
 import { Schema } from '../../Schema';
@@ -7,12 +7,15 @@ import { Solution } from '../../Solution';
 
 const solution: Solution = Solution.create({
   kind: 'Solution',
-  name: 'Jadoo'
+  name: 'Jadoo',
+  schemas: []
 });
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
-  name: 'finance'
+  name: 'finance',
+  entities: [],
+  enums: []
 }, solution);
 
 const entity: Entity = Entity.create({
@@ -72,6 +75,27 @@ describe('TimeAttribute', () => {
           name: ''
         }, entity);
       }).toThrowError('invalid attribute');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns TimeAttributeSpec', () => {
+      const timeAttribute: TimeAttribute = TimeAttribute.create({
+        kind: 'TimeAttribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true
+      }, entity);
+
+      const timeAttributeSpec: TimeAttributeSpec = timeAttribute.toJSON();
+
+      expect(timeAttributeSpec).toEqual({
+        kind: 'TimeAttribute',
+        name: 'value',
+        isPrimary: false,
+        isNullable: true,
+        format: DEFAULT_TIME_FORMAT
+      });
     });
   });
 });

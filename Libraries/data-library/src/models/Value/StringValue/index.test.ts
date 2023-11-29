@@ -1,16 +1,19 @@
-import { StringValue } from '..';
+import { StringValue, StringValueSpec } from '..';
 import { Schema } from '../../Schema';
 import { Enum } from '../../Enum';
 import { Solution } from '../../Solution';
 
 const solution: Solution = Solution.create({
   kind: 'Solution',
-  name: 'Jadoo'
+  name: 'Jadoo',
+  schemas: []
 });
 
 const schema: Schema = Schema.create({
   kind: 'Schema',
-  name: 'finance'
+  name: 'finance',
+  entities: [],
+  enums: []
 }, solution);
 
 const $enum: Enum = Enum.create({
@@ -70,6 +73,24 @@ describe('StringValue', () => {
           value: 0 as unknown as string
         }, $enum);
       }).toThrowError('invalid value');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns StringValueSpec', () => {
+      const stringValue: StringValue = StringValue.create({
+        kind: 'StringValue',
+        name: 'credit',
+        value: 'credit'
+      }, $enum);
+
+      const stringValueSpec: StringValueSpec = stringValue.toJSON();
+
+      expect(stringValueSpec).toEqual({
+        kind: 'StringValue',
+        name: 'credit',
+        value: 'CREDIT'
+      });
     });
   });
 });

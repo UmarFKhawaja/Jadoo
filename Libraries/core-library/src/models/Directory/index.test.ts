@@ -175,7 +175,7 @@ describe('Directory', () => {
       const children: Path[] = directory.children;
 
       expect(children).toBeInstanceOf(Array<Path>);
-      expect(children.length).toEqual(42);
+      expect(children.length).toEqual(66);
     });
 
     it('returns results FILES_ONLY when results is changed from EVERYTHING to FILES_ONLY', () => {
@@ -205,20 +205,20 @@ describe('Directory', () => {
       const children: Path[] = directory.children;
 
       expect(children).toBeInstanceOf(Array<Path>);
-      expect(children.length).toEqual(1);
+      expect(children.length).toEqual(3);
     });
   });
 
   describe('children', () => {
     const cases: [number, DirectoryMode, DirectoryResults, DirectoryOptions][] = [
       [
-        2,
+        4,
         DirectoryMode.DEFAULT,
         DirectoryResults.EVERYTHING,
         {}
       ],
       [
-        2,
+        4,
         DirectoryMode.DEFAULT,
         DirectoryResults.EVERYTHING,
         {
@@ -226,7 +226,7 @@ describe('Directory', () => {
         }
       ],
       [
-        42,
+        66,
         DirectoryMode.RECURSIVE,
         DirectoryResults.EVERYTHING,
         {
@@ -242,7 +242,7 @@ describe('Directory', () => {
         }
       ],
       [
-        1,
+        3,
         DirectoryMode.DEFAULT,
         DirectoryResults.DIRECTORIES_ONLY,
         {
@@ -250,7 +250,7 @@ describe('Directory', () => {
         }
       ],
       [
-        2,
+        4,
         DirectoryMode.DEFAULT,
         DirectoryResults.EVERYTHING,
         {
@@ -267,7 +267,7 @@ describe('Directory', () => {
         }
       ],
       [
-        1,
+        3,
         DirectoryMode.DEFAULT,
         DirectoryResults.DIRECTORIES_ONLY,
         {
@@ -276,7 +276,7 @@ describe('Directory', () => {
         }
       ],
       [
-        2,
+        4,
         DirectoryMode.DEFAULT,
         DirectoryResults.EVERYTHING,
         {
@@ -285,7 +285,7 @@ describe('Directory', () => {
         }
       ],
       [
-        19,
+        29,
         DirectoryMode.RECURSIVE,
         DirectoryResults.FILES_ONLY,
         {
@@ -294,7 +294,7 @@ describe('Directory', () => {
         }
       ],
       [
-        23,
+        37,
         DirectoryMode.RECURSIVE,
         DirectoryResults.DIRECTORIES_ONLY,
         {
@@ -303,7 +303,7 @@ describe('Directory', () => {
         }
       ],
       [
-        42,
+        66,
         DirectoryMode.RECURSIVE,
         DirectoryResults.EVERYTHING,
         {
@@ -322,13 +322,13 @@ describe('Directory', () => {
       expect(children).toHaveLength(length);
     });
 
-    it('returns 2 items when mode is DEFAULT and results is EVERYTHING where options are not provided', () => {
+    it('returns 4 items when mode is DEFAULT and results is EVERYTHING where options are not provided', () => {
       const directory: Directory = Directory.create('../../Examples');
 
       const children: Path[] = directory.children;
 
       expect(children).toBeInstanceOf(Array<Path>);
-      expect(children).toHaveLength(2);
+      expect(children).toHaveLength(4);
     });
   });
 });

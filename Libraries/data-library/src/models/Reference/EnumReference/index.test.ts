@@ -1,5 +1,5 @@
 import { Identifier, Title } from '@jadoo/core-library';
-import { EnumReference, SchemaReference } from '..';
+import { EnumReference, EnumReferenceSpec, SchemaReference } from '..';
 
 describe('EnumReference', () => {
   describe('create', () => {
@@ -45,6 +45,22 @@ describe('EnumReference', () => {
           name: ['account-type', 'finance', '']
         });
       }).toThrowError('invalid enum reference');
+    });
+  });
+
+  describe('toJSON', () => {
+    it('returns EnumReferenceSpec', () => {
+      const enumReference: EnumReference = EnumReference.create({
+        kind: 'EnumReference',
+        name: ['account-type', 'finance', 'jadoo']
+      });
+
+      const enumReferenceSpec: EnumReferenceSpec = enumReference.toJSON();
+
+      expect(enumReferenceSpec).toEqual({
+        kind: 'EnumReference',
+        name: ['account-type', 'finance', 'jadoo']
+      });
     });
   });
 });

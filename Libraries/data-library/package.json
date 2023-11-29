@@ -33,7 +33,7 @@
   },
   "jest": {
     "transform": {
-      "^.+\\.[tj]sx?$": [
+      "^.+\\.tsx?$": [
         "ts-jest",
         {
           "preset": "ts-jest",
