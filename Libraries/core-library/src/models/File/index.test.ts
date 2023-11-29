@@ -1,6 +1,20 @@
 import { FileMode } from '../../types';
 import { File } from '.';
 
+const READMEContents =
+`# Jadoo
+
+This solution represents the "Golden Path".
+
+# Teesra
+
+This solution has an erroneous entity definition.
+
+# Wrongun
+
+This solution has an erroneous enum definition.
+`;
+
 describe('File', () => {
   describe('create', () => {
     it('creates a File with the given name', () => {
@@ -61,8 +75,8 @@ describe('File', () => {
       const content: Buffer = file.content;
 
       expect(content).toBeInstanceOf(Buffer);
-      expect(content.length).toEqual(7);
-      expect(content).toEqual(Buffer.from('# Jadoo'));
+      expect(content.length).toEqual(174);
+      expect(content).toEqual(Buffer.from(READMEContents));
     });
 
     it('gets content in TEXT mode', () => {
@@ -73,8 +87,8 @@ describe('File', () => {
       const content: Buffer = file.content;
 
       expect(content).toBeInstanceOf(Buffer);
-      expect(content.length).toEqual(7);
-      expect(content).toEqual(Buffer.from('# Jadoo'));
+      expect(content.length).toEqual(174);
+      expect(content).toEqual(Buffer.from(READMEContents));
     });
 
     it('does not get content in UNKNOWN mode', () => {
