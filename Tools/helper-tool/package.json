@@ -1,0 +1,36 @@
+{
+  "name": "@jadoo/helper-tool",
+  "version": "0.0.0",
+  "author": {
+    "name": "Umar Farooq Khawaja",
+    "email": "umar.farooq.khawaja@gmail.com"
+  },
+  "bin": {
+    "jadoo": "bin/jadoo.js"
+  },
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "clean": "rm -rf lib",
+    "test": "jest",
+    "start": "dotenv -- node -r ts-node/register src/index.ts"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.3.1",
+    "@jadoo/data-module": "^0.0.0",
+    "dayjs": "^1.11.10",
+    "graphql": "^16.8.1",
+    "graphql-scalars": "^1.22.4",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/node": "^18.18.13",
+    "dotenv-cli": "^7.3.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
+  }
+}

@@ -9,7 +9,8 @@
   "workspaces": [
     "Libraries/**",
     "Modules/**",
-    "Plugins/**"
+    "Plugins/**",
+    "Tools/**"
   ],
   "devDependencies": {
     "glob": "^10.3.10",

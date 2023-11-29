@@ -11,3 +11,7 @@ Keys/localhost.*
 /Plugins/**/lib/
 /Plugins/**/node_modules/
 /Services/**/.env
+/Tools/**/coverage/
+/Tools/**/lib/
+/Tools/**/node_modules/
+/Tools/**/.env
