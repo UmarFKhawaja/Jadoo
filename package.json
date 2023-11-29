@@ -8,9 +8,9 @@
     "clean": "lerna run clean"
   },
   "workspaces": [
-    "Libraries/*",
-    "Modules/*",
-    "Plugins/*"
+    "Libraries/**",
+    "Modules/**",
+    "Plugins/**"
   ],
   "devDependencies": {
     "glob": "^10.3.10",

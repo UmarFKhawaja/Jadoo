@@ -1,17 +1,14 @@
-import { Field, ID, Int, ObjectType } from 'type-graphql';
+import { Field, ID, ObjectType } from 'type-graphql';
 import {
   Column,
   CreateDateColumn,
   Entity,
   JoinTable,
   ManyToMany,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm';
-import { Step } from './Step';
 import { User } from './User';
-import { Photo } from './Photo';
 
 @ObjectType()
 @Entity()
@@ -34,10 +31,6 @@ export class Solution {
   @UpdateDateColumn()
   updateDate!: Date;
 
-  @Field((type) => [Step])
-  @OneToMany(() => Step, (step: Step) => step.solution)
-  steps!: Step[];
-
   @Field((type) => [User])
   @ManyToMany(() => User, (user: User) => user.solutions)
   @JoinTable({
@@ -50,8 +43,4 @@ export class Solution {
     }
   })
   users!: User[];
-
-  @Field((type) => [Photo])
-  @OneToMany(() => Photo, (photo: Photo) => photo.solution)
-  photos!: Photo[];
 }

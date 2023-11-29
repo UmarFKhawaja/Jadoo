@@ -165,18 +165,4 @@ export class UserService {
 
     return users;
   }
-
-  async findUserByPhotoID(photoID: string): Promise<User | null> {
-    const userRepository: Repository<User> = this.dataSource.getRepository(User);
-
-    const user: User | null = await userRepository.findOne({
-      where: {
-        photo: {
-          id: photoID
-        }
-      }
-    });
-
-    return user;
-  }
 }

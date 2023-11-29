@@ -1,3 +1,4 @@
+import { GRPC } from '@cerbos/grpc';
 import { Redis } from 'ioredis';
 import { DataSource } from 'typeorm';
 import { entities } from '../entities';
@@ -26,4 +27,8 @@ export const CACHE: Redis = new Redis({
   port: config.cache.port,
   password: config.cache.password,
   ...(config.cache.useTLS ? { tls: {} } : {})
+});
+
+export const AUTH: GRPC = new GRPC(`${config.auth.host}:${config.auth.ports.grpc}`, {
+  tls: config.auth.useTLS
 });

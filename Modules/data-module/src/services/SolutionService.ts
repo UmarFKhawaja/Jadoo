@@ -36,20 +36,6 @@ export class SolutionService {
     return solutions;
   }
 
-  async findSolutionByStepID(stepID: string): Promise<Solution | null> {
-    const solutionRepository: Repository<Solution> = this.dataSource.getRepository(Solution);
-
-    const solution: Solution | null = await solutionRepository.findOne({
-      where: {
-        steps: {
-          id: stepID
-        }
-      }
-    });
-
-    return solution;
-  }
-
   async findSolutions(skip: number, take: number): Promise<SolutionPage> {
     const solutionRepository: Repository<Solution> = this.dataSource.getRepository(Solution);
 
@@ -63,19 +49,5 @@ export class SolutionService {
     const hasMore: boolean = solutions.length === take + 1;
 
     return new SolutionPage(solutions, skip, take, count, hasMore);
-  }
-
-  async findSolutionByPhotoID(photoID: string): Promise<Solution | null> {
-    const solutionRepository: Repository<Solution> = this.dataSource.getRepository(Solution);
-
-    const solution: Solution | null = await solutionRepository.findOne({
-      where: {
-        photos: {
-          id: photoID
-        }
-      }
-    });
-
-    return solution;
   }
 }

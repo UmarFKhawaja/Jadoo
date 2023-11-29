@@ -1,11 +1,13 @@
 import { readFileSync as readFile } from 'fs';
 import { parseBoolean, parseNumber, parseString } from '../methods';
+import { AuthConfig } from './AuthConfig';
+import { CacheConfig } from './CacheConfig';
 import { CORSConfig } from './CORSConfig';
 import { DatabaseConfig } from './DatabaseConfig';
 import { ServerConfig } from './ServerConfig';
 import { ServerHttpsConfig } from './ServerHttpsConfig';
 import { SessionConfig } from './SessionConfig';
-import { CacheConfig } from './CacheConfig';
+import { AuthPortsConfig } from './AuthPortsConfig';
 
 export class Config {
   private static readonly Instance: Config = Config.createInstance();
@@ -20,12 +22,15 @@ export class Config {
 
   private readonly _cache: CacheConfig;
 
-  private constructor(cors: CORSConfig, server: ServerConfig, session: SessionConfig, database: DatabaseConfig, cache: CacheConfig) {
+  private readonly _auth: AuthConfig;
+
+  private constructor(cors: CORSConfig, server: ServerConfig, session: SessionConfig, database: DatabaseConfig, cache: CacheConfig, auth: AuthConfig) {
     this._cors = cors;
     this._server = server;
     this._session = session;
     this._database = database;
     this._cache = cache;
+    this._auth = auth;
   }
 
   static get instance(): Config {
@@ -52,6 +57,10 @@ export class Config {
     return this._cache;
   }
 
+  get auth(): AuthConfig {
+    return this._auth;
+  }
+
   private static createInstance(): Config {
     const cors: CORSConfig = Config.getCORSConfig();
 
@@ -63,7 +72,9 @@ export class Config {
 
     const cache: CacheConfig = Config.getCacheConfig();
 
-    const config: Config = new Config(cors, server, session, database, cache);
+    const auth: AuthConfig = Config.getAuthConfig();
+
+    const config: Config = new Config(cors, server, session, database, cache, auth);
 
     return config;
   }
@@ -134,6 +145,28 @@ export class Config {
       host,
       port,
       password,
+      useTLS
+    };
+  }
+
+  private static getAuthConfig(): AuthConfig {
+    function getPostsConfig(): AuthPortsConfig {
+      const http: number = parseNumber('AUTH_HTTP_PORT', 3592);
+      const grpc: number = parseNumber('AUTH_GRPC_PORT', 3593);
+
+      return {
+        http,
+        grpc
+      };
+    }
+
+    const host: string = parseString('AUTH_HOST', 'localhost');
+    const ports: AuthPortsConfig = getPostsConfig();
+    const useTLS: boolean = parseBoolean('AUTH_USE_TLS', false);
+
+    return {
+      host,
+      ports,
       useTLS
     };
   }

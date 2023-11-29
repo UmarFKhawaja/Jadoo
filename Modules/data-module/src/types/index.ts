@@ -1,3 +1,5 @@
+export * from './AuthConfig';
+export * from './AuthPortsConfig';
 export * from './CacheConfig';
 export * from './Config';
 export * from './Context';

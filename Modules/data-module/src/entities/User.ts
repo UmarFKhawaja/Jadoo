@@ -5,12 +5,10 @@ import {
   Entity,
   Index,
   ManyToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm';
 import { Solution } from './Solution';
-import { Photo } from './Photo';
 
 @ObjectType()
 @Entity()
@@ -51,8 +49,4 @@ export class User {
   @Field((type) => [Solution])
   @ManyToMany(() => Solution, (solution: Solution) => solution.users)
   solutions!: Solution[];
-
-  @Field((type) => Photo)
-  @OneToOne(() => Photo, (photo: Photo) => photo.user)
-  photo!: Photo;
 }
