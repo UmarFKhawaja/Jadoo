@@ -1,0 +1,53 @@
+{
+  "name": "@jadoo/data-module",
+  "version": "0.0.0",
+  "author": {
+    "name": "Umar Farooq Khawaja",
+    "email": "umar.farooq.khawaja@gmail.com"
+  },
+  "types": "lib/index.d.ts",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "clean": "rm -rf lib",
+    "test": "jest",
+    "typeorm": "dotenv -- typeorm-ts-node-commonjs --dataSource src/connectors/index.ts"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dayjs": "^1.11.10",
+    "graphql": "^16.8.1",
+    "graphql-scalars": "^1.22.4",
+    "ioredis": "^5.3.2",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.6.5",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^2.0.0-beta.3",
+    "typeorm": "0.3.17"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jest": "^29.5.10",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/node": "^18.18.13",
+    "dotenv-cli": "^7.3.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.2"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": [
+        "ts-jest",
+        {
+          "preset": "ts-jest",
+          "testEnvironment": "node"
+        }
+      ]
+    }
+  }
+}

@@ -2,6 +2,10 @@
 /Libraries/**/coverage/
 /Libraries/**/lib/
 /Libraries/**/node_modules/
+/Modules/**/coverage/
+/Modules/**/lib/
+/Modules/**/node_modules/
+/Modules/**/.env
 /Plugins/**/coverage/
 /Plugins/**/lib/
 /Plugins/**/node_modules/
