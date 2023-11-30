@@ -26,7 +26,7 @@ export function SessionProvider({ config, children }: SessionProviderProps) {
   }, [invalidateAuthentication]);
 
   const handleLogout = useCallback(async (navigate: NavigateFunction) => {
-    const response = await fetch(`${config.server.url}/auth/logout`, {
+    const response: Response = await fetch(`${config.server.url}/auth/logout`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
