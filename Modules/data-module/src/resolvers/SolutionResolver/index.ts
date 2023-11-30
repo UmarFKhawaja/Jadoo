@@ -1,4 +1,5 @@
 import { Args, Ctx, FieldResolver, Resolver, Root } from 'type-graphql';
+import { DataSource } from 'typeorm';
 import { Solution, User } from '../../entities';
 import { UserService } from '../../services';
 import { Context } from '../../types';
@@ -8,8 +9,10 @@ import { UsersArgs } from './types';
 export class SolutionResolver {
   private readonly userService: UserService;
 
-  constructor() {
-    this.userService = new UserService();
+  constructor(
+    dataSource: DataSource
+  ) {
+    this.userService = new UserService(dataSource);
   }
 
   @FieldResolver()

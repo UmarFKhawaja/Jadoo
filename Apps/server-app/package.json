@@ -75,7 +75,8 @@
       "tsconfig.json",
       "package.json",
       "package-lock.json",
-      ".env"
+      ".env",
+      "../../Modules/data-module"
     ],
     "execMap": {
       "ts": "node --trace-warnings -r ts-node/register"

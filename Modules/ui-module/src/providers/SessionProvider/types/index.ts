@@ -1,13 +1,5 @@
 import { NavigateFunction } from 'react-router';
 
-export interface SessionProviderConfig {
-  server: SessionProviderServerConfig;
-}
-
-export interface SessionProviderServerConfig {
-  url: string;
-}
-
 export interface SessionContextType {
   isAuthenticated: boolean;
 

@@ -1,4 +1,5 @@
 import { Args, Ctx, Query, Resolver } from 'type-graphql';
+import { DataSource } from 'typeorm';
 import { Solution, User } from '../../entities';
 import { SolutionService, UserService } from '../../services';
 import { Context, SolutionPage } from '../../types';
@@ -17,9 +18,11 @@ export class QueryResolver {
 
   private readonly userService: UserService;
 
-  constructor() {
-    this.solutionService = new SolutionService();
-    this.userService = new UserService();
+  constructor(
+    dataSource: DataSource
+  ) {
+    this.solutionService = new SolutionService(dataSource);
+    this.userService = new UserService(dataSource);
   }
 
   @Query((returns) => User, {

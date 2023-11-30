@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
-import { SessionProviderConfig } from '../types';
+import { Config } from '../../../types';
 
 export interface SessionProviderProps {
-  config: SessionProviderConfig;
+  config: Config;
 
   children?: ReactNode;
 }

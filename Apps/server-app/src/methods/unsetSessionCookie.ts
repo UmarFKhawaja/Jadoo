@@ -1,12 +1,10 @@
 import { Request, Response } from 'express';
-import { Config } from '@jadoo/data-module';
+import { CONFIG } from '@jadoo/data-module';
 import { SESSION_COOKIE_NAME } from '../constants';
 
 export async function unsetSessionCookie(req: Request, res: Response): Promise<void> {
-  const config: Config = Config.instance;
-
   res.cookie(SESSION_COOKIE_NAME, '', {
-    domain: config.session.domain,
+    domain: CONFIG.session.domain,
     path: '/',
     httpOnly: true,
     secure: true,

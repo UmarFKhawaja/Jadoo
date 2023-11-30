@@ -1,13 +1,11 @@
 import { DataSource, Repository } from 'typeorm';
-import { DATA_SOURCE } from '../connectors';
 import { Solution } from '../entities';
 import { SolutionPage } from '../types';
 
 export class SolutionService {
-  private readonly dataSource: DataSource;
-
-  constructor() {
-    this.dataSource = DATA_SOURCE;
+  constructor(
+    private dataSource: DataSource
+  ) {
   }
 
   async findSolutionByID(id: string): Promise<Solution | null> {

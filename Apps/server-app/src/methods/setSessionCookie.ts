@@ -1,12 +1,10 @@
 import dayjs from 'dayjs';
 import { Request, Response } from 'express';
 import { sign } from 'jsonwebtoken';
-import { Config, User } from '@jadoo/data-module';
+import { CONFIG, User } from '@jadoo/data-module';
 import { SESSION_COOKIE_NAME } from '../constants';
 
 export async function setSessionCookie(req: Request, res: Response): Promise<void> {
-  const config: Config = Config.instance;
-
   const {
     id,
     displayName,
@@ -19,7 +17,7 @@ export async function setSessionCookie(req: Request, res: Response): Promise<voi
     displayName,
     userName,
     emailAddress
-  }, config.session.secret, {
+  }, CONFIG.session.secret, {
     expiresIn: '1d'
   });
 
@@ -28,7 +26,7 @@ export async function setSessionCookie(req: Request, res: Response): Promise<voi
   res.cookie(SESSION_COOKIE_NAME, {
     token
   }, {
-    domain: config.session.domain,
+    domain: CONFIG.session.domain,
     path: '/',
     httpOnly: true,
     secure: true,

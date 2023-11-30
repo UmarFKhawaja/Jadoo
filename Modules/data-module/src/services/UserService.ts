@@ -7,10 +7,7 @@ import { DATA_SOURCE } from '../connectors';
 import { User } from '../entities';
 
 export class UserService {
-  private readonly dataSource: DataSource;
-
-  constructor() {
-    this.dataSource = DATA_SOURCE;
+  constructor(private dataSource: DataSource) {
   }
 
   async registerUser({ displayName, userName, emailAddress, password }: {
@@ -20,8 +17,7 @@ export class UserService {
     password: string
   }): Promise<boolean> {
     try {
-      const dataSource: DataSource = DATA_SOURCE;
-      const userRepository: Repository<User> = dataSource.getRepository(User);
+      const userRepository: Repository<User> = this.dataSource.getRepository(User);
 
       const users: User[] = await userRepository.find({
         where: [

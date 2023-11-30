@@ -3,8 +3,10 @@ export * from './AuthPortsConfig';
 export * from './CacheConfig';
 export * from './Config';
 export * from './Context';
+export * from './CORSConfig';
 export * from './DatabaseConfig';
-export * from './SolutionPage';
 export * from './ServerConfig';
-export * from './ServerHttpsConfig';
+export * from './ServerHTTPSConfig';
 export * from './SessionConfig';
+export * from './SolutionPage';
+

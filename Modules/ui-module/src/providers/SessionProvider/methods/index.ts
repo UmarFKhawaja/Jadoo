@@ -1,6 +1,6 @@
-import { SessionProviderConfig } from '../types';
+import { Config } from '../../../types';
 
-export async function isValidSession(config: SessionProviderConfig): Promise<boolean> {
+export async function isValidSession(config: Config): Promise<boolean> {
   try {
     const response = await fetch(`${config.server.url}/auth/check`, {
       method: 'GET',

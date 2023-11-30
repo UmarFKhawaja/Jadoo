@@ -35,17 +35,17 @@ AUTH_GRPC_PORT="43593"
 EOF
 
 cat << EOF > Apps/browser-app/.env
-BROWSER_PORT="5080"
+BROWSER_PORT="4443"
 BROWSER_CRT_FILE="../../Keys/localhost.crt"
 BROWSER_KEY_FILE="../../Keys/localhost.key"
 
-SERVER_URL="https://localhost:4180"
+SERVER_URL="https://localhost:4543"
 EOF
 
 cat << EOF > Apps/server-app/.env
-CORS_ORIGIN="https://localhost:4080"
+CORS_ORIGIN="https://localhost:4443"
 
-SERVER_PORT="4180"
+SERVER_PORT="4543"
 SERVER_CRT_FILE="../../Keys/localhost.crt"
 SERVER_KEY_FILE="../../Keys/localhost.key"
 

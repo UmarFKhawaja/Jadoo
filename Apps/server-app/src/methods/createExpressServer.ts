@@ -7,31 +7,31 @@ import cors from 'cors';
 import express, { Express, urlencoded } from 'express';
 import session from 'express-session';
 import passport from 'passport';
-import { CACHE, Config } from '@jadoo/data-module';
+import { CACHE, CONFIG, DataSource } from '@jadoo/data-module';
 import { createAuthRouter } from './createAuthRouter';
 import { createGraphQLRouter } from './createGraphQLRouter';
 import { createHealthRouter } from './createHealthRouter';
 import { createStatusRouter } from './createStatusRouter';
 
-export async function createExpressServer(config: Config): Promise<{
+export async function createExpressServer(dataSource: DataSource): Promise<{
   app: Express;
   httpServer: HttpServer,
   options: {
     usesSSL: boolean
   }
 }> {
-  const usesSSL: boolean = !!config.server.https;
+  const usesSSL: boolean = !!CONFIG.server.https;
 
   const app: Express = express();
   const httpServer: HttpServer = usesSSL
     ? createHttpsServer({
-      cert: config.server.https?.crt,
-      key: config.server.https?.key
+      cert: CONFIG.server.https?.crt,
+      key: CONFIG.server.https?.key
     }, app)
     : createHttpServer(app);
 
   app.use(cors({
-    origin: config.cors.origin,
+    origin: CONFIG.cors.origin,
     credentials: true
   }));
   app.use(json());
@@ -42,7 +42,7 @@ export async function createExpressServer(config: Config): Promise<{
     store: new RedisStore({
       client: <any>CACHE
     }),
-    secret: config.session.secret,
+    secret: CONFIG.session.secret,
     resave: false,
     saveUninitialized: true
   }));
@@ -51,7 +51,7 @@ export async function createExpressServer(config: Config): Promise<{
 
   app.use('/health', await createHealthRouter());
   app.use('/status', await createStatusRouter());
-  app.use('/auth', await createAuthRouter());
+  app.use('/auth', await createAuthRouter(dataSource));
   app.use('/graphql', await createGraphQLRouter(httpServer));
 
   return {

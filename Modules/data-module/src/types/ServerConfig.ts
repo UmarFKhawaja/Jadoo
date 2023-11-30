@@ -1,6 +1,6 @@
-import { ServerHttpsConfig } from './ServerHttpsConfig';
+import { ServerHTTPSConfig } from './ServerHTTPSConfig';
 
 export interface ServerConfig {
-  https: ServerHttpsConfig | null;
+  https: ServerHTTPSConfig | null;
   port: number;
 }

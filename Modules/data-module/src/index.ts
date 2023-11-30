@@ -1,3 +1,7 @@
+export type { GRPC } from '@cerbos/grpc';
+export type { Redis } from 'ioredis';
+export type { DataSource } from 'typeorm';
+export * from './config';
 export * from './connectors';
 export * from './constants';
 export * from './entities';

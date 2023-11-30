@@ -16,7 +16,7 @@
     "watch:build": "vite build --watch",
     "watch:typecheck": "tsc --noEmit --watch",
     "watch": "concurrently \"npm:watch:typecheck\" \"npm:watch:typecheck\"",
-    "clean": "rm --recursive --force lib",
+    "clean": "rm -rf lib",
     "start": "dotenv -- vite",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",

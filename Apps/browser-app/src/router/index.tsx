@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { CreateSolutionFeature } from '@jadoo/create-solution-feature';
 import { ManageOverviewFeature } from '@jadoo/manage-overview-feature';
 import { ManageProfileFeature } from '@jadoo/manage-profile-feature';
 import { ManageSettingsFeature } from '@jadoo/manage-settings-feature';
@@ -11,7 +12,6 @@ import { config } from '../config';
 import {
   BrowseElement,
   BrowseSolutionsElement,
-  CreateSolutionElement,
   ManageElement
 } from '../elements';
 
@@ -52,7 +52,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/create/solution',
-    element: <CreateSolutionElement/>
+    element: <CreateSolutionFeature/>
   },
   {
     path: '/browse',

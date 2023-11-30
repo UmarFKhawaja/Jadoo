@@ -2,21 +2,21 @@ import { Request, Response, Router } from 'express';
 import passport from 'passport';
 import { IVerifyOptions as IBearerVerifyOptions, Strategy as BearerStrategy } from 'passport-http-bearer';
 import { IVerifyOptions as IPasswordVerifyOptions, Strategy as PasswordStrategy } from 'passport-local';
-import { User, UserService } from '@jadoo/data-module';
+import { DataSource, User, UserService } from '@jadoo/data-module';
 import { authorize } from './authorize';
 import { checkSession } from './checkSession';
 import { sendProfile } from './sendProfile';
 import { setSessionCookie } from './setSessionCookie';
 import { unsetSessionCookie } from './unsetSessionCookie';
 
-export async function createAuthRouter(): Promise<Router> {
+export async function createAuthRouter(dataSource: DataSource): Promise<Router> {
   const router: Router = Router();
 
   passport.use('bearer', new BearerStrategy({
     passReqToCallback: true
   }, async (req: Request, token: string, done: (error: any, user?: any, options?: IBearerVerifyOptions | string) => void) => {
     try {
-      const userService: UserService = new UserService();
+      const userService: UserService = new UserService(dataSource);
 
       const user: User = await userService.verifyUserByBearer(token);
 
@@ -31,7 +31,7 @@ export async function createAuthRouter(): Promise<Router> {
     passReqToCallback: true
   }, async (req: Request, username: string, password: string, done: (error: any, user?: Express.User | false, options?: IPasswordVerifyOptions) => void) => {
     try {
-      const userService: UserService = new UserService();
+      const userService: UserService = new UserService(dataSource);
 
       const user: User = await userService.verifyUserByPassword(username, password);
 
@@ -52,7 +52,7 @@ export async function createAuthRouter(): Promise<Router> {
   });
 
   passport.deserializeUser(async (req: Request, id: string, done: (error: any, user?: Express.User | false) => any): Promise<void> => {
-    const userService: UserService = new UserService();
+    const userService: UserService = new UserService(dataSource);
 
     const user: User | null = await userService.findUserByID(id);
 
@@ -71,7 +71,7 @@ export async function createAuthRouter(): Promise<Router> {
       password
     } = req.body;
 
-    const userService: UserService = new UserService();
+    const userService: UserService = new UserService(dataSource);
 
     const hasSucceeded: boolean = await userService.registerUser({
       displayName,
