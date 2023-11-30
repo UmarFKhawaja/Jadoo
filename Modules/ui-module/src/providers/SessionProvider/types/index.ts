@@ -3,9 +3,9 @@ import { NavigateFunction } from 'react-router';
 export interface SessionContextType {
   isAuthenticated: boolean;
 
-  invalidateAuthentication: () => void;
+  invalidateAuthentication: () => Promise<void>;
 
-  handleLogout: (navigate: NavigateFunction) => void | Promise<void>;
+  handleLogout: (navigate: NavigateFunction) => Promise<void>;
 }
 
 export interface SessionType {
@@ -13,5 +13,5 @@ export interface SessionType {
 
   invalidateAuthentication: () => void;
 
-  logout: () => void | Promise<void>;
+  logout: () => Promise<void>;
 }

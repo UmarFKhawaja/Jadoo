@@ -6,7 +6,7 @@ import { SessionType } from '../types';
 export function useSession(navigate: NavigateFunction): SessionType {
   const { isAuthenticated, invalidateAuthentication, handleLogout } = useContext(SessionContext);
 
-  const logout = useCallback(() => handleLogout(navigate), [navigate, handleLogout]);
+  const logout = useCallback(async (): Promise<void> => await handleLogout(navigate), [navigate, handleLogout]);
 
   return {
     isAuthenticated,

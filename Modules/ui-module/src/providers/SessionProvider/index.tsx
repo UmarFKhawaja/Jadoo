@@ -10,19 +10,23 @@ import { SessionContextType } from './types';
 export function SessionProvider({ config, children }: SessionProviderProps) {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
-  const invalidateAuthentication = useCallback(() => {
-    isValidSession(config)
-      .then((isAuthenticated) => setIsAuthenticated(isAuthenticated))
-      .catch(() => {
-        showNotification({
-          message: 'We could not validate your session.',
-          color: 'red'
-        });
+  const invalidateAuthentication = useCallback(async () => {
+    try {
+      const isAuthenticated: boolean = await isValidSession(config);
+
+      setIsAuthenticated(isAuthenticated);
+    } catch (error: any) {
+      showNotification({
+        message: `We could not validate your session. ${error.message || 'There was a problem.'}`,
+        color: 'red'
       });
+    }
   }, [config, setIsAuthenticated]);
 
   useEffect(() => {
-    invalidateAuthentication();
+    invalidateAuthentication().then().catch();
+
+    return () => {};
   }, [invalidateAuthentication]);
 
   const handleLogout = useCallback(async (navigate: NavigateFunction) => {
@@ -40,9 +44,7 @@ export function SessionProvider({ config, children }: SessionProviderProps) {
         color: 'red'
       });
     } else {
-      invalidateAuthentication();
-
-      navigate('/');
+      invalidateAuthentication().finally(() => navigate('/'));
     }
   }, [invalidateAuthentication]);
 
