@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { NavigateFunction } from 'react-router';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { showNotification } from '@mantine/notifications';
 import { SessionContext } from './contexts';
 import { isValidSession } from './methods';
 import { SessionProviderProps } from './props';
 import { SessionContextType } from './types';
-import { NavigateFunction } from 'react-router';
 
 export function SessionProvider({ config, children }: SessionProviderProps) {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
