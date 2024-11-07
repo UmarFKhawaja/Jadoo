@@ -11,7 +11,15 @@ export default defineConfig({
         key: fs.readFileSync(process.env.BROWSER_KEY_FILE)
       }
     } : {}),
-    port: parseInt(process.env.BROWSER_PORT || '5080')
+    port: parseInt(process.env.BROWSER_PORT || '4080'),
+    proxy: {
+      '/api': {
+        target: process.env.SERVER_URL,
+        changeOrigin: true,
+        secure: false,
+        ws: true
+      }
+    }
   },
   plugins: [
     react()

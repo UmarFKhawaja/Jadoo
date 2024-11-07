@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { CONFIG } from '@jadoo/data-module';
+import { CONFIG } from '../config';
 import { SESSION_COOKIE_NAME } from '../constants';
 
 export async function unsetSessionCookie(req: Request, res: Response): Promise<void> {
@@ -10,9 +10,6 @@ export async function unsetSessionCookie(req: Request, res: Response): Promise<v
     secure: true,
     maxAge: -1
   });
-
-  // @ts-ignore
-  req.session.passport = {};
 
   res.end();
 }

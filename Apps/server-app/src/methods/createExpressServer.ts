@@ -4,16 +4,14 @@ import { json } from 'body-parser';
 import RedisStore from 'connect-redis';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import express, { Express, urlencoded } from 'express';
+import express, { Express, Request, Response, Router, urlencoded } from 'express';
 import session from 'express-session';
 import passport from 'passport';
-import { CACHE, CONFIG, DataSource } from '@jadoo/data-module';
-import { createAuthRouter } from './createAuthRouter';
-import { createGraphQLRouter } from './createGraphQLRouter';
-import { createHealthRouter } from './createHealthRouter';
-import { createStatusRouter } from './createStatusRouter';
+import { CACHE, DataSource, GRPC, Redis } from '@jadoo/data-module';
+import { CONFIG } from '../config';
+import { createAPIRouter } from './createAPIRouter';
 
-export async function createExpressServer(dataSource: DataSource): Promise<{
+export async function createExpressServer(auth: GRPC, cache: Redis, dataSource: DataSource): Promise<{
   app: Express;
   httpServer: HttpServer,
   options: {
@@ -49,10 +47,7 @@ export async function createExpressServer(dataSource: DataSource): Promise<{
   app.use(passport.initialize());
   app.use(passport.session());
 
-  app.use('/health', await createHealthRouter());
-  app.use('/status', await createStatusRouter());
-  app.use('/auth', await createAuthRouter(dataSource));
-  app.use('/graphql', await createGraphQLRouter(httpServer));
+  app.use('/api', await createAPIRouter(auth, cache, dataSource, httpServer));
 
   return {
     app,

@@ -1,9 +1,6 @@
-version: '3'
-
 services:
   mysql:
-    image: mysql:latest
-    command: --default-authentication-plugin=mysql_native_password
+    image: mysql:8.4.3
     environment:
       MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
       MYSQL_USER: ${DATABASE_USERNAME}
@@ -16,7 +13,7 @@ services:
     restart: always
 
   redis:
-    image: redis:latest
+    image: redis:7.4.1
     command: redis-server /usr/local/etc/redis/redis.conf
     ports:
       - '${CACHE_PORT}:6379'
@@ -27,7 +24,7 @@ services:
     restart: always
 
   cerbos:
-    image: ghcr.io/cerbos/cerbos:latest
+    image: ghcr.io/cerbos/cerbos:0.39.0
     command: server --config=/conf.yaml
     ports:
       - '${AUTH_HTTP_PORT}:3592'

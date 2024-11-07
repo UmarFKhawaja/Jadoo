@@ -1,8 +1,8 @@
 import { GRPC } from '@cerbos/grpc';
-import { Config } from '../types';
+import { AuthConfig } from '../types';
 
-export function makeAuthConnector(config: Config): GRPC {
-  return new GRPC(`${config.auth.host}:${config.auth.ports.grpc}`, {
-    tls: config.auth.useTLS
+export function makeAuthConnector(authConfig: AuthConfig): GRPC {
+  return new GRPC(`${authConfig.host}:${authConfig.ports.grpc}`, {
+    tls: authConfig.useTLS
   });
 }

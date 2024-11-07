@@ -1,11 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Box, Button, Group, Text } from '@mantine/core';
 import { useSession } from '../../../../../../../../providers';
 
 export function CallToActionSection() {
-  const navigate = useNavigate();
-
-  const { isAuthenticated } = useSession(navigate);
+  const { isAuthenticated } = useSession();
 
   return (
     <Group justify="space-between">

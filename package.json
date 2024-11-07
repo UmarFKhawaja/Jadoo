@@ -8,16 +8,15 @@
   },
   "workspaces": [
     "Apps/**",
-    "Features/**",
     "Libraries/**",
     "Modules/**",
     "Plugins/**",
     "Tools/**"
   ],
   "devDependencies": {
-    "concurrently": "^8.2.2",
-    "glob": "^10.3.10",
-    "nanoid": "^5.0.3",
-    "lerna": "^8.0.0"
+    "concurrently": "^9.1.0",
+    "glob": "^11.0.0",
+    "nanoid": "^5.0.8",
+    "lerna": "^8.1.9"
   }
 }

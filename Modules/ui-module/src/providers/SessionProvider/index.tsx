@@ -1,69 +1,38 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { NavigateFunction } from 'react-router';
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import { showNotification } from '@mantine/notifications';
+import { useCallback, useMemo, useReducer } from 'react';
+import { INITIAL_STATE } from './constants';
 import { SessionContext } from './contexts';
-import { isValidSession } from './methods';
+import { fetchProfile, reduce } from './methods';
 import { SessionProviderProps } from './props';
-import { SessionContextType } from './types';
+import { SessionProviderValue } from './types';
 
-export function SessionProvider({ config, children }: SessionProviderProps) {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+export function SessionProvider({ children }: SessionProviderProps) {
+  const [state, dispatch] = useReducer(reduce, INITIAL_STATE);
 
-  const invalidateAuthentication = useCallback(async () => {
-    try {
-      const isAuthenticated: boolean = await isValidSession(config);
+  const setSession = useCallback(async () => {
+    const profile: object | null = await fetchProfile();
 
-      setIsAuthenticated(isAuthenticated);
-    } catch (error: any) {
-      showNotification({
-        message: `We could not validate your session. ${error.message || 'There was a problem.'}`,
-        color: 'red'
-      });
-    }
-  }, [config, setIsAuthenticated]);
-
-  useEffect(() => {
-    invalidateAuthentication().then().catch();
-
-    return () => {};
-  }, [invalidateAuthentication]);
-
-  const handleLogout = useCallback(async (navigate: NavigateFunction) => {
-    const response: Response = await fetch(`${config.server.url}/auth/logout`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: 'include'
+    dispatch({
+      type: 'SET_SESSION',
+      profile
     });
+  }, [dispatch]);
 
-    if (!response.ok) {
-      showNotification({
-        message: 'We could not sign you out successfully. Clear your browser\'s cookies',
-        color: 'red'
-      });
-    } else {
-      invalidateAuthentication().finally(() => navigate('/'));
-    }
-  }, [invalidateAuthentication]);
+  const unsetSession = useCallback(async () => {
+    dispatch({
+      type: 'UNSET_SESSION'
+    });
+  }, [dispatch]);
 
-  const value: SessionContextType = {
-    isAuthenticated,
-    invalidateAuthentication,
-    handleLogout
-  };
-
-  const client = useMemo(() => new ApolloClient({
-    uri: `${config.server.url}/graphql`,
-    cache: new InMemoryCache()
-  }), []);
+  const value: SessionProviderValue = useMemo(() => ({
+    ...state,
+    setSession,
+    unsetSession
+  }), [state, setSession, unsetSession]);
 
   return (
     <SessionContext.Provider value={value}>
-      <ApolloProvider client={client}>
-        {children}
-      </ApolloProvider>
+      {children}
     </SessionContext.Provider>
   );
 }
+

@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import {useNavigate } from 'react-router-dom';
 import { ActionIcon, Button, Group } from '@mantine/core';
@@ -7,7 +8,13 @@ import { useSession } from '../../../../providers';
 export function AccountActions() {
   const navigate = useNavigate();
 
-  const { isAuthenticated, logout } = useSession(navigate);
+  const { isAuthenticated, unsetSession } = useSession();
+
+  const logout = useCallback(async () => {
+    await unsetSession();
+
+    navigate('/');
+  }, [navigate, unsetSession]);
 
   return (
     <Group gap={8}>

@@ -2,14 +2,14 @@ import { Request, Response, Router } from 'express';
 import passport from 'passport';
 import { IVerifyOptions as IBearerVerifyOptions, Strategy as BearerStrategy } from 'passport-http-bearer';
 import { IVerifyOptions as IPasswordVerifyOptions, Strategy as PasswordStrategy } from 'passport-local';
-import { DataSource, User, UserService } from '@jadoo/data-module';
+import { DataSource, GRPC, Redis, User, UserService } from '@jadoo/data-module';
 import { authorize } from './authorize';
 import { checkSession } from './checkSession';
 import { sendProfile } from './sendProfile';
 import { setSessionCookie } from './setSessionCookie';
 import { unsetSessionCookie } from './unsetSessionCookie';
 
-export async function createAuthRouter(dataSource: DataSource): Promise<Router> {
+export async function createAuthRouter(auth: GRPC, cache: Redis, dataSource: DataSource): Promise<Router> {
   const router: Router = Router();
 
   passport.use('bearer', new BearerStrategy({

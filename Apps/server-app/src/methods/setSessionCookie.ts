@@ -1,7 +1,8 @@
 import dayjs from 'dayjs';
 import { Request, Response } from 'express';
 import { sign } from 'jsonwebtoken';
-import { CONFIG, User } from '@jadoo/data-module';
+import { User } from '@jadoo/data-module';
+import { CONFIG } from '../config';
 import { SESSION_COOKIE_NAME } from '../constants';
 
 export async function setSessionCookie(req: Request, res: Response): Promise<void> {
@@ -23,9 +24,7 @@ export async function setSessionCookie(req: Request, res: Response): Promise<voi
 
   const expireDate = dayjs().add(1, 'day').toDate();
 
-  res.cookie(SESSION_COOKIE_NAME, {
-    token
-  }, {
+  res.cookie(SESSION_COOKIE_NAME, token, {
     domain: CONFIG.session.domain,
     path: '/',
     httpOnly: true,

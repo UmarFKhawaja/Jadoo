@@ -1,16 +1,16 @@
 import { DataSource } from 'typeorm';
 import { entities } from '../entities';
 import { migrations } from '../migrations';
-import { Config } from '../types';
+import { DatabaseConfig } from '../types';
 
-export function makeDataSourceConnector(config: Config): DataSource {
+export function makeDataSourceConnector(databaseConfig: DatabaseConfig): DataSource {
   return new DataSource({
     type: 'mysql',
-    host: config.database.host,
-    port: config.database.port,
-    username: config.database.username,
-    password: config.database.password,
-    database: config.database.database,
+    host: databaseConfig.host,
+    port: databaseConfig.port,
+    username: databaseConfig.username,
+    password: databaseConfig.password,
+    database: databaseConfig.database,
     synchronize: false,
     logging: false,
     entities,

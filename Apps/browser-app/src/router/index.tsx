@@ -1,19 +1,21 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { CreateSolutionFeature } from '@jadoo/create-solution-feature';
-import { ManageOverviewFeature } from '@jadoo/manage-overview-feature';
-import { ManageProfileFeature } from '@jadoo/manage-profile-feature';
-import { ManageSettingsFeature } from '@jadoo/manage-settings-feature';
-import { ManageSolutionsFeature } from '@jadoo/manage-solutions-feature';
-import { ShowPlaceholderFeature } from '@jadoo/show-placeholder-feature';
-import { SignInFeature } from '@jadoo/sign-in-feature';
-import { SignUpFeature } from '@jadoo/sign-up-feature';
-import { ViewHomeFeature } from '@jadoo/view-home-feature';
 import { config } from '../config';
 import {
   BrowseElement,
   BrowseSolutionsElement,
   ManageElement
 } from '../elements';
+import {
+  CreateSolutionFeature,
+  ManageOverviewFeature,
+  ManageProfileFeature,
+  ManageSettingsFeature,
+  ManageSolutionsFeature,
+  ShowPlaceholderFeature,
+  SignInFeature,
+  SignUpFeature,
+  ViewHomeFeature
+} from '../features';
 
 export const router = createBrowserRouter([
   {
