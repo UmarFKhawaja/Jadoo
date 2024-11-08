@@ -1,10 +1,12 @@
+import { inject as Inject, injectable as Injectable } from 'inversify';
 import { DataSource, Repository } from 'typeorm';
 import { Solution } from '../entities';
 import { SolutionPage } from '../types';
 
+@Injectable()
 export class SolutionService {
   constructor(
-    private dataSource: DataSource
+    @Inject(DataSource) private dataSource: DataSource
   ) {
   }
 

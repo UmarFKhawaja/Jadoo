@@ -1,12 +1,16 @@
 import { compare, hash } from 'bcryptjs';
 import dayjs from 'dayjs';
+import { inject as Inject, injectable as Injectable } from 'inversify';
 import { decode, JwtPayload } from 'jsonwebtoken';
 import { DataSource, Repository } from 'typeorm';
 import { EMPTY_ID } from '../constants';
 import { User } from '../entities';
 
+@Injectable()
 export class UserService {
-  constructor(private dataSource: DataSource) {
+  constructor(
+    @Inject(DataSource) private dataSource: DataSource
+  ) {
   }
 
   async registerUser({ displayName, userName, emailAddress, password }: {

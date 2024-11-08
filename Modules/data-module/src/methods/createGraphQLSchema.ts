@@ -1,4 +1,5 @@
 import { GraphQLSchema } from 'graphql';
+import { Container } from 'inversify';
 import { buildSchema } from 'type-graphql';
 import {
   MutationResolver,
@@ -7,8 +8,9 @@ import {
   UserResolver
 } from '../resolvers';
 
-export async function createGraphQLSchema(): Promise<GraphQLSchema> {
+export async function createGraphQLSchema(container: Container): Promise<GraphQLSchema> {
   const schema: GraphQLSchema = await buildSchema({
+    container: () => container,
     resolvers: [
       MutationResolver,
       QueryResolver,

@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="test" type="js.build_tools.npm" nameIsGenerated="true">
-    <package-json value="$PROJECT_DIR$/package.json" />
+  <configuration default="false" name="core-module &gt; watch" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/Modules/core-module/package.json" />
     <command value="run" />
     <scripts>
-      <script value="test" />
+      <script value="watch" />
     </scripts>
     <node-interpreter value="project" />
     <envs />

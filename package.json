@@ -10,8 +10,7 @@
     "Apps/**",
     "Libraries/**",
     "Modules/**",
-    "Plugins/**",
-    "Tools/**"
+    "Plugins/**"
   ],
   "devDependencies": {
     "concurrently": "^9.1.0",

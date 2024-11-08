@@ -4,10 +4,11 @@ import { json } from 'body-parser';
 import RedisStore from 'connect-redis';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import express, { Express, Request, Response, Router, urlencoded } from 'express';
+import express, { Express, urlencoded } from 'express';
 import session from 'express-session';
+import { Container } from 'inversify';
 import passport from 'passport';
-import { CACHE, DataSource, GRPC, Redis } from '@jadoo/data-module';
+import { CACHE, createDIContainer, DataSource, GRPC, Redis } from '@jadoo/data-module';
 import { CONFIG } from '../config';
 import { createAPIRouter } from './createAPIRouter';
 
@@ -27,6 +28,7 @@ export async function createExpressServer(auth: GRPC, cache: Redis, dataSource: 
       key: CONFIG.server.https?.key
     }, app)
     : createHttpServer(app);
+  const container: Container = await createDIContainer(new Container(), auth, cache, dataSource);
 
   app.use(cors({
     origin: CONFIG.cors.origin,
@@ -47,7 +49,7 @@ export async function createExpressServer(auth: GRPC, cache: Redis, dataSource: 
   app.use(passport.initialize());
   app.use(passport.session());
 
-  app.use('/api', await createAPIRouter(auth, cache, dataSource, httpServer));
+  app.use('/api', await createAPIRouter(auth, cache, dataSource, httpServer, container));
 
   return {
     app,

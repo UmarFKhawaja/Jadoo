@@ -4,7 +4,6 @@ import { SessionProviderAction, SessionProviderState } from './types';
 export function reduce(state: SessionProviderState, action: SessionProviderAction): SessionProviderState {
   switch (action.type) {
     case 'SET_SESSION':
-      console.log(action.profile);
       return {
         ...state,
         profile: action.profile,

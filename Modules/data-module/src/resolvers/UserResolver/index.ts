@@ -1,18 +1,16 @@
+import { inject as Inject, injectable as Injectable } from 'inversify';
 import { Args, Ctx, FieldResolver, Resolver, Root } from 'type-graphql';
-import { DataSource } from 'typeorm';
 import { Solution, User } from '../../entities';
 import { SolutionService } from '../../services';
 import { Context } from '../../types';
 import { SolutionsArgs } from './types';
 
+@Injectable()
 @Resolver((of) => User)
 export class UserResolver {
-  private readonly solutionService: SolutionService;
-
   constructor(
-    dataSource: DataSource
+    @Inject(SolutionService) private readonly solutionService: SolutionService
   ) {
-    this.solutionService = new SolutionService(dataSource);
   }
 
   @FieldResolver()

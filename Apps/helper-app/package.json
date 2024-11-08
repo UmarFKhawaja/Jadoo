@@ -1,5 +1,5 @@
 {
-  "name": "@jadoo/helper-tool",
+  "name": "@jadoo/helper-app",
   "version": "0.0.0",
   "author": {
     "name": "Umar Farooq Khawaja",
@@ -26,6 +26,7 @@
     "dayjs": "^1.11.13",
     "graphql": "^16.9.0",
     "graphql-scalars": "^1.23.0",
+    "inversify": "^6.1.1",
     "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {

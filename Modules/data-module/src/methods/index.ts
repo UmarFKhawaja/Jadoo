@@ -1,3 +1,4 @@
+export * from './createDIContainer';
 export * from './createGraphQLSchema';
 export * from './makeAuthConnector';
 export * from './makeCacheConnector';

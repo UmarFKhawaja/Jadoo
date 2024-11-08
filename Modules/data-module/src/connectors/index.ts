@@ -1,8 +1,8 @@
 import { GRPC } from '@cerbos/grpc';
 import { Redis } from 'ioredis';
 import { DataSource } from 'typeorm';
-import { makeAuthConnector, makeCacheConnector, makeDataSourceConnector } from '../methods';
 import { AUTH_CONFIG, CACHE_CONFIG, DATABASE_CONFIG } from '../configs';
+import { makeAuthConnector, makeCacheConnector, makeDataSourceConnector } from '../methods';
 
 export const AUTH: GRPC = makeAuthConnector(AUTH_CONFIG);
 

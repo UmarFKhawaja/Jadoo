@@ -1,5 +1,5 @@
+import { inject as Inject, injectable as Injectable } from 'inversify';
 import { Args, Ctx, Query, Resolver } from 'type-graphql';
-import { DataSource } from 'typeorm';
 import { Solution, User } from '../../entities';
 import { SolutionService, UserService } from '../../services';
 import { Context, SolutionPage } from '../../types';
@@ -12,17 +12,13 @@ import {
   GetUserByUserNameArgs
 } from './types';
 
+@Injectable()
 @Resolver()
 export class QueryResolver {
-  private readonly solutionService: SolutionService;
-
-  private readonly userService: UserService;
-
   constructor(
-    dataSource: DataSource
+    @Inject(SolutionService) private readonly solutionService: SolutionService,
+    @Inject(UserService) private readonly userService: UserService
   ) {
-    this.solutionService = new SolutionService(dataSource);
-    this.userService = new UserService(dataSource);
   }
 
   @Query((returns) => User, {

@@ -1,11 +1,14 @@
+import { injectable as Injectable } from 'inversify';
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
 import { Solution } from '../../entities';
 import { Context } from '../../types';
 import { SolutionInput } from './types';
 
+@Injectable()
 @Resolver()
 export class MutationResolver {
-  constructor() {
+  constructor(
+  ) {
   }
 
   @Mutation((type) => Solution)
