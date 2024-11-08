@@ -2,13 +2,12 @@ import { Link } from 'react-router-dom';
 import { Anchor, Box, Button, Container, Group, Paper, PasswordInput, Text, TextInput, Title } from '@mantine/core';
 import { useData } from './hooks';
 import styles from './styles.module.css';
-import { SignInFeatureProps } from './props.ts';
 
-export function SignInFeature({ config }: SignInFeatureProps) {
+export function SignInFeature() {
   const {
     form,
     submit
-  } = useData(config);
+  } = useData();
 
   return (
     <Box className={styles.hero}>

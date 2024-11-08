@@ -6,5 +6,6 @@ export * from './ManageSettingsFeature';
 export * from './ManageSolutionsFeature';
 export * from './ShowPlaceholderFeature';
 export * from './SignInFeature';
+export * from './SignOutFeature';
 export * from './SignUpFeature';
 export * from './ViewHomeFeature';

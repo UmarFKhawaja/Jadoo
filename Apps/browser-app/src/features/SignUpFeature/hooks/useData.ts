@@ -2,10 +2,10 @@ import { useCallback } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router';
 import { useForm, UseFormReturnType } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
-import { Config } from '../../../types';
+import { config } from '../../../config';
 import { SignUpForm } from '../types';
 
-export function useData(config: Config) {
+export function useData() {
   const navigate: NavigateFunction = useNavigate();
 
   const form: UseFormReturnType<SignUpForm> = useForm<SignUpForm>({
@@ -41,7 +41,7 @@ export function useData(config: Config) {
       });
     }
 
-    const response: Response = await fetch(`/api/auth/register`, {
+    const response: Response = await fetch(config.api.auth.register, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

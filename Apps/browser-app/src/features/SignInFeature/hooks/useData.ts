@@ -2,11 +2,11 @@ import { useCallback } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router';
 import { useForm, UseFormReturnType } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
+import { config } from '../../../config';
 import { useSession } from '../../../providers';
-import { Config } from '../../../types';
 import { SignInForm } from '../types';
 
-export function useData(config: Config) {
+export function useData() {
   const navigate: NavigateFunction = useNavigate();
 
   const { setSession } = useSession();
@@ -28,7 +28,7 @@ export function useData(config: Config) {
       password
     }: SignInForm = values;
 
-    const response: Response = await fetch(`/api/auth/login/password`, {
+    const response: Response = await fetch(config.api.auth.login.password, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

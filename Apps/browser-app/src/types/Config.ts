@@ -1,5 +1,5 @@
-import { ServerConfig } from './ServerConfig';
+import { APIConfig } from './APIConfig';
 
 export interface Config {
-  server: ServerConfig;
+  api: APIConfig;
 }

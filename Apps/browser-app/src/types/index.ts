@@ -1,3 +1,4 @@
+export * from './APIConfig';
 export * from './Config';
 export * from './FiniteData';
 export * from './FiniteDataRequest';
@@ -7,6 +8,5 @@ export * from './InfiniteData';
 export * from './InfiniteDataRequest';
 export * from './InfiniteDataRequestVariables';
 export * from './InfiniteDataResponse';
-export * from './ServerConfig';
 export * from './Solution';
 export * from './SolutionRating';

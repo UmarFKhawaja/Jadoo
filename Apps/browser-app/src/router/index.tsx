@@ -1,5 +1,4 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { config } from '../config';
 import {
   BrowseSolutionsFeature,
   CreateSolutionFeature,
@@ -9,6 +8,7 @@ import {
   ManageSolutionsFeature,
   ShowPlaceholderFeature,
   SignInFeature,
+  SignOutFeature,
   SignUpFeature,
   ViewHomeFeature
 } from '../features';
@@ -30,11 +30,15 @@ export const router = createBrowserRouter([
       },
       {
         path: 'sign-in',
-        element: <SignInFeature config={config}/>
+        element: <SignInFeature/>
+      },
+      {
+        path: 'sign-out',
+        element: <SignOutFeature/>
       },
       {
         path: 'sign-up',
-        element: <SignUpFeature config={config}/>
+        element: <SignUpFeature/>
       },
       {
         path: '',

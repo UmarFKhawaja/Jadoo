@@ -1,20 +1,10 @@
-import { useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import {useNavigate } from 'react-router-dom';
 import { ActionIcon, Button, Group } from '@mantine/core';
 import { IconHexagons, IconLayoutDashboard, IconSettings, IconUser } from '@tabler/icons-react';
 import { useSession } from '../../../../providers';
 
 export function AccountActions() {
-  const navigate = useNavigate();
-
-  const { isAuthenticated, unsetSession } = useSession();
-
-  const logout = useCallback(async () => {
-    await unsetSession();
-
-    navigate('/');
-  }, [navigate, unsetSession]);
+  const { isAuthenticated } = useSession();
 
   return (
     <Group gap={8}>
@@ -34,7 +24,7 @@ export function AccountActions() {
               <ActionIcon variant="default" size="lg" component={Link} to="/manage/settings">
                 <IconSettings/>
               </ActionIcon>
-              <Button variant="default" onClick={logout}>Sign out</Button>
+              <Button component={Link} variant="default" to="/sign-out">Sign out</Button>
             </>
           )
           : (

@@ -5,7 +5,7 @@ import { sendProfile } from './sendProfile';
 export async function createProfileRouter(): Promise<Router> {
   const router: Router = Router();
 
-  router.get('/profile', authorize, sendProfile);
+  router.get('/', authorize, sendProfile);
 
   return router;
 }
