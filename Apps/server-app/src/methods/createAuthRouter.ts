@@ -3,9 +3,6 @@ import passport from 'passport';
 import { IVerifyOptions as IBearerVerifyOptions, Strategy as BearerStrategy } from 'passport-http-bearer';
 import { IVerifyOptions as IPasswordVerifyOptions, Strategy as PasswordStrategy } from 'passport-local';
 import { DataSource, GRPC, Redis, User, UserService } from '@jadoo/data-module';
-import { authorize } from './authorize';
-import { checkSession } from './checkSession';
-import { sendProfile } from './sendProfile';
 import { setSessionCookie } from './setSessionCookie';
 import { unsetSessionCookie } from './unsetSessionCookie';
 
@@ -92,10 +89,6 @@ export async function createAuthRouter(auth: GRPC, cache: Redis, dataSource: Dat
   router.post('/login/password', passport.authenticate('password'), setSessionCookie);
 
   router.post('/logout', unsetSessionCookie);
-
-  router.get('/check', authorize, checkSession);
-
-  router.get('/profile', authorize, sendProfile);
 
   return router;
 }

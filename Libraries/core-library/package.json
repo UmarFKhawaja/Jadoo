@@ -17,8 +17,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "glob": "^10.4.5",
-    "inversify": "^6.0.3",
+    "glob": "^11.0.0",
+    "inversify": "^6.1.1",
     "lodash": "^4.17.21",
     "pluralize": "^8.0.0",
     "reflect-metadata": "^0.2.2",

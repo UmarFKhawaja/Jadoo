@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@jadoo/core-library": "^0.0.0",
-    "inversify": "^6.0.3",
+    "inversify": "^6.1.1",
     "lodash": "^4.17.21",
     "reflect-metadata": "^0.2.2",
     "yaml": "^2.6.0"

@@ -28,16 +28,16 @@ module.exports = {
     } else if (CONFIG.Accept.Minor.Names.includes(name)) {
       return 'minor';
     } else if (CONFIG.Accept.Major.Names.includes(name)) {
-      return 'major';
+      return 'greatest';
     } else if (CONFIG.Accept.Patch.Prefixes.some((prefix) => name.startsWith(prefix))) {
       return 'patch';
     } else if (CONFIG.Accept.Minor.Prefixes.some((prefix) => name.startsWith(prefix))) {
       return 'minor';
     } else if (CONFIG.Accept.Major.Prefixes.some((prefix) => name.startsWith(prefix))) {
-      return 'major';
+      return 'greatest';
     }
 
-    return 'minor';
+    return 'greatest';
   },
   reject: CONFIG.Reject.Names
 };

@@ -21,7 +21,7 @@
     "start": "dotenv -- node -r ts-node/register src/index.ts"
   },
   "dependencies": {
-    "@faker-js/faker": "^8.4.1",
+    "@faker-js/faker": "^9.2.0",
     "@jadoo/data-module": "^0.0.0",
     "dayjs": "^1.11.13",
     "graphql": "^16.9.0",
