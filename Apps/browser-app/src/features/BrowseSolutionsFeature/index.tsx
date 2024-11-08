@@ -1,9 +1,11 @@
 import { useMemo, useState } from 'react';
 import { Container, SimpleGrid } from '@mantine/core';
-import { Solution, SolutionCard, SolutionSkeleton, useInfiniteData } from '@jadoo/ui-module';
+import { SolutionCard, SolutionSkeleton } from '../../components';
+import { useInfiniteData } from '../../hooks';
+import { Solution } from '../../types';
 import { getSolutionsQuery } from './commands';
 
-export function BrowseSolutionsElement() {
+export function BrowseSolutionsFeature() {
   const [skip, setSkip] = useState<number>(0);
 
   const take: number = 12;

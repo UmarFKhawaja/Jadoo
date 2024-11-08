@@ -1,4 +1,4 @@
-import { Config, ServerConfig } from '@jadoo/ui-module';
+import { Config, ServerConfig } from '../types';
 
 export const config: Config = {
   server: parseServerConfig()

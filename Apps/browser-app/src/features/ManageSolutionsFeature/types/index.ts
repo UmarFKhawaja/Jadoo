@@ -1,4 +1,4 @@
-import { Solution } from '@jadoo/ui-module';
+import { Solution } from '../../../types';
 
 export interface SolutionData {
   id: string;

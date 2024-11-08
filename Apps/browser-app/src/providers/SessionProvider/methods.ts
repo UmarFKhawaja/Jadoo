@@ -1,3 +1,5 @@
+import dayjs, { Dayjs } from 'dayjs';
+import { decodeJwt } from 'jose';
 import { SessionProviderAction, SessionProviderState } from './types';
 
 export function reduce(state: SessionProviderState, action: SessionProviderAction): SessionProviderState {
@@ -21,6 +23,16 @@ export function reduce(state: SessionProviderState, action: SessionProviderActio
   }
 }
 
+export function isTokenValid(token: string): boolean {
+  const session = decodeJwt(token);
+
+  const expiresAt: Dayjs = dayjs((session.exp as number) * 1000);
+  const checkedAt: Dayjs = dayjs();
+  const isValid: boolean = expiresAt.isAfter(checkedAt);
+
+  return isValid;
+}
+
 export async function fetchProfile(): Promise<object> {
   try {
     const response: Response = await fetch(`/api/auth/profile`, {
@@ -29,25 +41,13 @@ export async function fetchProfile(): Promise<object> {
     });
 
     if (!response.ok) {
-      console.group('profile');
-      console.log({});
-      console.groupEnd();
-
       return {};
     }
 
     const profile: object = await response.json() as object;
 
-    console.group('profile');
-    console.log(profile);
-    console.groupEnd();
-
     return profile;
   } catch (error: unknown) {
-    console.group('profile');
-    console.log({});
-    console.groupEnd();
-
     return {};
   }
 }

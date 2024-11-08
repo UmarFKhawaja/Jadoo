@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Box, Button, Container, Stack, Text, Title } from '@mantine/core';
-import { useSession } from '@jadoo/ui-module';
+import { useSession } from '../../providers';
 import styles from './styles.module.css';
 
 export function ViewHomeFeature() {

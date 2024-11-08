@@ -1,5 +1,5 @@
 import { Button, Container, Group, TextInput } from '@mantine/core';
-import { Header } from '@jadoo/ui-module';
+import { Header } from '../../components';
 import { useData } from './hooks';
 import styles from './styles.module.css';
 

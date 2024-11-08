@@ -1,11 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { config } from '../config';
 import {
-  BrowseElement,
-  BrowseSolutionsElement,
-  ManageElement
-} from '../elements';
-import {
+  BrowseSolutionsFeature,
   CreateSolutionFeature,
   ManageOverviewFeature,
   ManageProfileFeature,
@@ -16,91 +12,109 @@ import {
   SignUpFeature,
   ViewHomeFeature
 } from '../features';
+import {
+  ApolloLayout,
+  BrowseLayout,
+  ManageLayout,
+  RootLayout
+} from '../layouts';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <ViewHomeFeature/>
-  },
-  {
-    path: '/sign-in',
-    element: <SignInFeature config={config}/>
-  },
-  {
-    path: '/sign-up',
-    element: <SignUpFeature config={config}/>
-  },
-  {
-    path: '/manage',
-    element: <ManageElement/>,
+    element: <RootLayout/>,
     children: [
       {
         path: '',
-        element: <ManageOverviewFeature/>
+        element: <ViewHomeFeature/>
       },
       {
-        path: 'solutions',
-        element: <ManageSolutionsFeature/>
+        path: 'sign-in',
+        element: <SignInFeature config={config}/>
       },
       {
-        path: 'profile',
-        element: <ManageProfileFeature/>
+        path: 'sign-up',
+        element: <SignUpFeature config={config}/>
       },
       {
-        path: 'settings',
-        element: <ManageSettingsFeature/>
-      }
-    ]
-  },
-  {
-    path: '/create/solution',
-    element: <CreateSolutionFeature/>
-  },
-  {
-    path: '/browse',
-    element: <BrowseElement/>,
-    children: [
-      {
-        path: 'solutions',
-        element: <BrowseSolutionsElement/>
-      },
-      {
-        path: 'features',
-        element: <ShowPlaceholderFeature/>,
+        path: '',
+        element: <ApolloLayout/>,
         children: [
           {
-            path: 'share-progress',
-            element: <ShowPlaceholderFeature/>
+            path: 'manage',
+            element: <ManageLayout/>,
+            children: [
+              {
+                path: '',
+                element: <ManageOverviewFeature/>
+              },
+              {
+                path: 'solutions',
+                element: <ManageSolutionsFeature/>
+              },
+              {
+                path: 'profile',
+                element: <ManageProfileFeature/>
+              },
+              {
+                path: 'settings',
+                element: <ManageSettingsFeature/>
+              }
+            ]
           },
           {
-            path: 'enjoy-variety',
-            element: <ShowPlaceholderFeature/>
+            path: 'create/solution',
+            element: <CreateSolutionFeature/>
           },
           {
-            path: 'track-meals',
-            element: <ShowPlaceholderFeature/>
-          },
-          {
-            path: 'inform-choices',
-            element: <ShowPlaceholderFeature/>
-          },
-          {
-            path: 'set-goals',
-            element: <ShowPlaceholderFeature/>
-          },
-          {
-            path: 'socialize-securely',
-            element: <ShowPlaceholderFeature/>
+            path: 'browse',
+            element: <BrowseLayout/>,
+            children: [
+              {
+                path: 'solutions',
+                element: <BrowseSolutionsFeature/>
+              },
+              {
+                path: 'features',
+                element: <ShowPlaceholderFeature/>,
+                children: [
+                  {
+                    path: 'share-progress',
+                    element: <ShowPlaceholderFeature/>
+                  },
+                  {
+                    path: 'enjoy-variety',
+                    element: <ShowPlaceholderFeature/>
+                  },
+                  {
+                    path: 'track-meals',
+                    element: <ShowPlaceholderFeature/>
+                  },
+                  {
+                    path: 'inform-choices',
+                    element: <ShowPlaceholderFeature/>
+                  },
+                  {
+                    path: 'set-goals',
+                    element: <ShowPlaceholderFeature/>
+                  },
+                  {
+                    path: 'socialize-securely',
+                    element: <ShowPlaceholderFeature/>
+                  }
+                ]
+              },
+              {
+                path: 'tutorials',
+                element: <ShowPlaceholderFeature/>
+              },
+              {
+                path: 'techniques',
+                element: <ShowPlaceholderFeature/>
+              }
+            ]
           }
         ]
-      },
-      {
-        path: 'tutorials',
-        element: <ShowPlaceholderFeature/>
-      },
-      {
-        path: 'techniques',
-        element: <ShowPlaceholderFeature/>
       }
     ]
   }

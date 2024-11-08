@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router';
 import { useForm, UseFormReturnType } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
-import { Config } from '@jadoo/ui-module';
+import { Config } from '../../../types';
 import { SignUpForm } from '../types';
 
 export function useData(config: Config) {

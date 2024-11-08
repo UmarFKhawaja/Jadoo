@@ -1,6 +1,6 @@
 import * as Chance from 'chance';
 import { nanoid } from 'nanoid';
-import { Solution, SolutionRating } from '@jadoo/ui-module';
+import { Solution, SolutionRating } from '../types';
 
 interface ChanceNanoIDMixin {
   nanoid(): string;

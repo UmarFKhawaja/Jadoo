@@ -1,3 +1,4 @@
+export * from './BrowseSolutionsFeature';
 export * from './CreateSolutionFeature';
 export * from './ManageOverviewFeature';
 export * from './ManageProfileFeature';

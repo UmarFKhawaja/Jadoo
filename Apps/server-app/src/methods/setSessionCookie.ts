@@ -27,7 +27,7 @@ export async function setSessionCookie(req: Request, res: Response): Promise<voi
   res.cookie(SESSION_COOKIE_NAME, token, {
     domain: CONFIG.session.domain,
     path: '/',
-    httpOnly: true,
+    httpOnly: false,
     secure: true,
     expires: expireDate
   });

@@ -2,10 +2,10 @@ import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Button, Text } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
-import { Solution, useFiniteData } from '@jadoo/ui-module';
+import { useFiniteData } from '../../hooks';
+import { FiniteDataResponse, Solution } from '../../types';
 import { getSolutionsQuery } from './commands';
 import { SolutionData } from './types';
-import { FiniteDataResponse } from '@jadoo/ui-module/src/types';
 
 export function ManageSolutionsFeature() {
   const query = useMemo(getSolutionsQuery, []);

@@ -1,4 +1,4 @@
-import { Config } from '@jadoo/ui-module';
+import { Config } from '../../types';
 
 export interface SignUpFeatureProps {
   config: Config;

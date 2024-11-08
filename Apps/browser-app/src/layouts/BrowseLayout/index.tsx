@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router';
 import { Box } from '@mantine/core';
-import { Header } from '@jadoo/ui-module';
+import { Header } from '../../components';
 
-export function BrowseElement() {
+export function BrowseLayout() {
   return (
     <Box>
       <Header/>

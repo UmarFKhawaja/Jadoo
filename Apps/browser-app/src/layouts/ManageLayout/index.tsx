@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router';
 import { Box, Container } from '@mantine/core';
-import { Header } from '@jadoo/ui-module';
+import { Header } from '../../components';
 import classes from './styles';
 
-export function ManageElement() {
+export function ManageLayout() {
   return (
     <Box>
       <Header/>

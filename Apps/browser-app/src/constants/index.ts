@@ -1,5 +1,7 @@
 import { CookieSetOptions } from 'universal-cookie';
 
+export const SESSION_COOKIE_NAME: string = 'session';
+
 export const MARKER_COOKIE_NAME: string = 'marker';
 
 export const MARKER_HEADER_NAME: string = 'X-Marker';
